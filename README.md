@@ -6,18 +6,18 @@
 
 - 更新地图为最新（RMUA2022）规则中使用的地图。
 - 更新world文件，增加了机器人头部标识，以方便使用stage调试。
-- 更新**roborts_msgs**和**roborts_base**包为最新（RMUA2022）规则中使用的包。
-- Fix了定位节点无法启动的问题。由于C++编译器原因，部分代码 (比如**amcl.cpp**, **teb_local_planner.cpp**等)中部分函数编写不规范导致。
-- Fix了OpenCV库的问题。由于ROS Noetic自带OpenCV4，原始RoboRTS中使用OpenCV3，修改了**roborts_camera**包和**roborts_tracking**包中的部分OpenCV接口以支持OpenCV4。
+- 更新`roborts_msgs`和`roborts_base`包为最新（RMUA2022）规则中使用的包。
+- Fix了定位节点无法启动的问题。由于C++编译器原因，部分代码 (比如`amcl.cpp`, `teb_local_planner.cpp`等)中部分函数编写不规范导致。
+- Fix了`OpenCV`库的问题。由于ROS Noetic自带OpenCV4，原始RoboRTS中使用OpenCV3，修改了`roborts_camera`包和`roborts_tracking`包中的部分OpenCV接口以支持OpenCV4。
 
 ## 说明
 
-- 未同步队伍**RMUA2022**参赛代码
+- 未同步队伍`RMUA2022`参赛代码
 
-- 更新的地图文件是依据最新（RMUA2022）规则中公布的地图，按照 20:1 的比例制作，**包括四周宽度为30厘米的围栏**，定位的结果将是以**围栏外围**为坐标系，如下图所示：
+- 更新的地图文件是依据最新（RMUA2022）规则中公布的地图，按照 20:1 的比例制作，**包括四周宽度为30厘米的围栏**，定位的结果将是以围栏外围为坐标系，示意图如下所示：
   <img src="images/map.png" style="zoom:70%;display:inline-block;float:middle">
-  <img src="images/map.png" style="zoom:70%;display:inline-block;float:middle">
-- 在**ROS Neotic**中亦可以使用**OpenCV3**，按照以下步骤操作即可：
+  <img src="images/terminal.png" style="zoom:70%;display:inline-block;float:middle">
+- 在ROS Neotic中亦可以使用`OpenCV3`，按照以下步骤操作即可：
 
   - 安装依赖
 
@@ -30,7 +30,7 @@
     sudo apt-get install libgstreamer-plugins-base1.0-dev libavutil-dev libavfilter-dev libavresample-dev
     ~~~
 
-  - 官网（https://opencv.org/releases/）下载**OpenCV3**的**Sources**版本
+  - 官网（https://opencv.org/releases/）下载`OpenCV3`的`Sources`版本
 
     ~~~shell
     unzip opencv-3.4.*.zip
@@ -42,7 +42,7 @@
     sudo make install
     ~~~
 
-  - 找到**cv_bridge**配置文件所在位置
+  - 找到`cv_bridge`配置文件所在位置
 
     ~~~shell
     cd /opt/ros/noetic/share/cv_bridge/cmake
@@ -72,18 +72,34 @@
     
     ~~~
 
-    修改为 (这里以**opencv-3.4.16**为例)：
+    修改为 (这里以`opencv-3.4.16`为例)：
 
     ~~~shell
     set(libraries "cv_bridge;/usr/local/lib/libopencv_calib3d.so;/usr/local/lib/libopencv_features2d.so.3.4.16;/usr/local/lib/libopencv_imgproc.so.3.4;/usr/local/lib/libopencv_shape.so;/usr/local/lib/libopencv_videoio.so.3.4.16;/usr/local/lib/libopencv_calib3d.so.3.4;/usr/local/lib/libopencv_flann.so;/usr/local/lib/libopencv_imgproc.so.3.4.16;/usr/local/lib/libopencv_shape.so.3.4;/usr/local/lib/libopencv_video.so;/usr/local/lib/libopencv_calib3d.so.3.4.16;/usr/local/lib/libopencv_flann.so.3.4;/usr/local/lib/libopencv_ml.so;/usr/local/lib/libopencv_shape.so.3.4.16;/usr/local/lib/libopencv_video.so.3.4;/usr/local/lib/libopencv_core.so;/usr/local/lib/libopencv_flann.so.3.4.16;/usr/local/lib/libopencv_ml.so.3.4;/usr/local/lib/libopencv_stitching.so;/usr/local/lib/libopencv_video.so.3.4.16;/usr/local/lib/libopencv_core.so.3.4;/usr/local/lib/libopencv_highgui.so;/usr/local/lib/libopencv_ml.so.3.4.16;/usr/local/lib/libopencv_stitching.so.3.4;/usr/local/lib/libopencv_videostab.so;/usr/local/lib/libopencv_core.so.3.4.16;/usr/local/lib/libopencv_highgui.so.3.4;/usr/local/lib/libopencv_objdetect.so;/usr/local/lib/libopencv_stitching.so.3.4.16;/usr/local/lib/libopencv_videostab.so.3.4;/usr/local/lib/libopencv_dnn.so;/usr/local/lib/libopencv_highgui.so.3.4.16;/usr/local/lib/libopencv_objdetect.so.3.4;/usr/local/lib/libopencv_superres.so;/usr/local/lib/libopencv_videostab.so.3.4.16;/usr/local/lib/libopencv_dnn.so.3.4;/usr/local/lib/libopencv_imgcodecs.so;/usr/local/lib/libopencv_objdetect.so.3.4.16;/usr/local/lib/libopencv_superres.so.3.4;/usr/local/lib/libopencv_viz.so;/usr/local/lib/libopencv_dnn.so;/usr/local/lib/libopencv_dnn.so.3.4.16;/usr/local/lib/libopencv_imgcodecs.so.3.4;/usr/local/lib/libopencv_photo.so;/usr/local/lib/libopencv_superres.so.3.4.16;/usr/local/lib/libopencv_viz.so.3.4;/usr/local/lib/libopencv_features2d.so;/usr/local/lib/libopencv_imgcodecs.so.3.4.16;/usr/local/lib/libopencv_photo.so.3.4;/usr/local/lib/libopencv_videoio.so;/usr/local/lib/libopencv_viz.so.3.4.16")
     
     ~~~
 
-  - CmakeLists文件更改编译选项：
+  - `CMakeLists`文件更改编译选项：
 
     ~~~shell
     find_package(OpenCV 3 REQUIRED)
     ~~~
+    
+ ## 编译运行
+ - 编译
+   ~~~shell
+   mkdir -p ~/roborts_ws/src
+   cd ~/roborts_ws/src
+   git clone https://github.com/wzw1105/RoboRTS-Noetic.git --depth=1
+   cd ..
+   catkin_make
+   echo "source ~/roborts_ws/devel/setup.bash" >> ~/.bashrc
+   source ~/.bashrc
+   ~~~
+ - 运行
+   ~~~shell
+   roslaunch roborts_bringup roborts_stage.launch
+   ~~~
 
     
 
