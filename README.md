@@ -30,7 +30,7 @@
     sudo apt-get install libgstreamer-plugins-base1.0-dev libavutil-dev libavfilter-dev libavresample-dev
     ~~~
 
-  - 官网（https://opencv.org/releases/）下载`OpenCV3`的`Sources`版本
+  - 官网[https://opencv.org/releases/](https://opencv.org/releases/)下载`OpenCV3`的`Sources`版本
 
     ~~~shell
     unzip opencv-3.4.*.zip
