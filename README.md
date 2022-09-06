@@ -15,8 +15,8 @@
 - 未同步队伍`RMUA2022`参赛代码
 
 - 更新的地图文件是依据最新（RMUA2022）规则中公布的地图，按照 20:1 的比例制作，**包括四周宽度为30厘米的围栏**，定位的结果将是以围栏外围为坐标系，示意图如下所示：
-  <img src="images/map.png" style="zoom:70%;display:inline-block;float:middle">
-  <img src="images/terminal.png" style="zoom:70%;display:inline-block;float:middle">
+  <img src="images/map.png" style="zoom:100%;display:inline-block;float:middle">
+  <img src="images/terminal.png" style="zoom:100%;display:inline-block;float:middle">
 - 在ROS Neotic中亦可以使用`OpenCV3`，按照以下步骤操作即可：
 
   - 安装依赖
@@ -100,6 +100,9 @@
    ~~~shell
    roslaunch roborts_bringup roborts_stage.launch
    ~~~
+   
+ - 运行结果展示
+  <img src="images/rviz.png" style="zoom:100%;display:inline-block;float:middle">
 
     
 
