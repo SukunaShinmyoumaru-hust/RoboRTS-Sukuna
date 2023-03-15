@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libroborts_sdk.so -o /home/sukuna/roborts_ws/devel/lib/libroborts_sdk.so CMakeFiles/roborts_sdk.dir/src/execution.cpp.o CMakeFiles/roborts_sdk.dir/src/handle.cpp.o CMakeFiles/roborts_sdk.dir/src/protocol.cpp.o CMakeFiles/roborts_sdk.dir/src/serial_device.cpp.o  -lglog -lpthread 

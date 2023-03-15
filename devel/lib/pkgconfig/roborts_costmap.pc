@@ -1,0 +1,8 @@
+prefix=/home/sukuna/roborts_ws/devel
+
+Name: roborts_costmap
+Description: Description of roborts_costmap
+Version: 1.0.0
+Cflags: -I/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_costmap/include
+Libs: -L${prefix}/lib 
+Requires: 

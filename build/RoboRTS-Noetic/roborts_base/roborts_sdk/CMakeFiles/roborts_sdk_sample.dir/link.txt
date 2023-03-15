@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/roborts_sdk_sample.dir/sample/sample.cpp.o  -o roborts_sdk_sample  -Wl,-rpath,/home/sukuna/roborts_ws/devel/lib /home/sukuna/roborts_ws/devel/lib/libroborts_sdk.so -lpthread -lglog 

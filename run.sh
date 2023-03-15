@@ -1,0 +1,2 @@
+catkin_make -DCATKIN_WHITELIST_PACKAGES="roborts_costmap;roborts_msgs;roborts_test"
+roslaunch roborts_test run.launch

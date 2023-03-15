@@ -1,0 +1,8 @@
+prefix=/home/sukuna/roborts_ws/devel
+
+Name: roborts_planning
+Description: Description of roborts_planning
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

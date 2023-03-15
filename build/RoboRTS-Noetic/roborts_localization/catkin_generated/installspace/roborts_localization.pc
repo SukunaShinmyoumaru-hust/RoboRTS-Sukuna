@@ -1,0 +1,8 @@
+prefix=/home/sukuna/roborts_ws/install
+
+Name: roborts_localization
+Description: Description of roborts_localization
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

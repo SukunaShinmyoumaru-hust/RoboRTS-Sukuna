@@ -1,0 +1,8 @@
+prefix=/home/sukuna/roborts_ws/devel
+
+Name: roborts_base
+Description: Description of roborts_base
+Version: 2.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp tf roborts_msgs

@@ -1,0 +1,2 @@
+RoboRTS-Noetic/roborts_base:RoboRTS-Noetic/roborts_bringup:RoboRTS-Noetic/roborts_camera:RoboRTS-Noetic/roborts_common:RoboRTS-Noetic/roborts_costmap:RoboRTS-Noetic/roborts_decision:RoboRTS-Noetic/roborts_detection:RoboRTS-Noetic/roborts_localization:RoboRTS-Noetic/roborts_msgs:RoboRTS-Noetic/roborts_planning:RoboRTS-Noetic/roborts_test:RoboRTS-Noetic/roborts_tracking
+-DCATKIN_WHITELIST_PACKAGES=roborts_costmap;roborts_msgs;roborts_test; -DCATKIN_DEVEL_PREFIX=/home/sukuna/roborts_ws/devel -DCMAKE_INSTALL_PREFIX=/home/sukuna/roborts_ws/install -G Unix Makefiles

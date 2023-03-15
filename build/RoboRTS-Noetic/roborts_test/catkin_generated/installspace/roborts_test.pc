@@ -1,0 +1,8 @@
+prefix=/home/sukuna/roborts_ws/install
+
+Name: roborts_test
+Description: Description of roborts_test
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
