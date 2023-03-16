@@ -6,7 +6,7 @@ para_costmap_interface {
   global_frame: "map"
   robot_base_frame: "base_link"
   footprint_padding: 0.1
-  transform_tolerance: 3.0
+  transform_tolerance: 0.5
   distance_threshold: 1.0
   map_width: 10.0
   map_height: 10.0

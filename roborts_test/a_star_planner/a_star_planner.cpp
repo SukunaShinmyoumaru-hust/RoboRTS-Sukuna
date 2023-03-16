@@ -18,16 +18,19 @@
 #include "a_star_planner.h"
 
 namespace roborts_global_planner{
-
     using roborts_common::ErrorCode;
     using roborts_common::ErrorInfo;
+    std::vector<int> AStarPlanner::f_score_;
 
-    AStarPlanner::AStarPlanner(CostmapPtr costmap_ptr) :
-            GlobalPlannerBase::GlobalPlannerBase(costmap_ptr),
-            gridmap_width_(costmap_ptr_->GetCostMap()->GetSizeXCell()),
-            gridmap_height_(costmap_ptr_->GetCostMap()->GetSizeYCell()),
-            cost_(costmap_ptr_->GetCostMap()->GetCharMap()) {
+    AStarPlanner::AStarPlanner(){
 
+    }
+
+    void AStarPlanner::GiveCostMap(CostmapPtr cost){
+        costmap_ptr_ = cost;
+        gridmap_width_ = costmap_ptr_->GetCostMap()->GetSizeXCell();
+        gridmap_height_ = costmap_ptr_->GetCostMap()->GetSizeYCell();
+        cost_ = costmap_ptr_->GetCostMap()->GetCharMap();
         AStarPlannerConfig a_star_planner_config;
         std::string full_path = ros::package::getPath("roborts_planning") + "/global_planner/a_star_planner/"\
       "config/a_star_planner_config.prototxt";
@@ -39,7 +42,7 @@ namespace roborts_global_planner{
         //  AStarPlanner param config
         heuristic_factor_ = a_star_planner_config.heuristic_factor();
         inaccessible_cost_ = a_star_planner_config.inaccessible_cost();
-        goal_search_tolerance_ = a_star_planner_config.goal_search_tolerance()/costmap_ptr->GetCostMap()->GetResolution();
+        goal_search_tolerance_ = a_star_planner_config.goal_search_tolerance()/costmap_ptr_->GetCostMap()->GetResolution();
     }
 
     AStarPlanner::~AStarPlanner(){
@@ -158,7 +161,7 @@ namespace roborts_global_planner{
             state_.at(current_index) = SearchState::CLOSED;
 
             if (current_index == goal_index) {
-                ROS_INFO("Search takes %d cycle counts", count);
+                // ROS_INFO("Search takes %d cycle counts", count);
                 break;
             }
 

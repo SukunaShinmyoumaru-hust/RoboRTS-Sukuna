@@ -26,25 +26,26 @@
 #include "state/error_code.h"
 #include "costmap/costmap_interface.h"
 
-#include "../global_planner_base.h"
-
 #define RIGHT 0
 #define WRONG 400
 #define CROSS 1000
 
 namespace roborts_global_planner{
-
+typedef std::shared_ptr<roborts_costmap::CostmapInterface> CostmapPtr;
+typedef std::shared_ptr<tf::TransformListener> TfPtr;
 /**
  * @brief Global planner alogorithm class for A star under the representation of costmap
  */
-class AStarPlanner : public GlobalPlannerBase {
+class AStarPlanner {
 
  public:
   /**
    * @brief Constructor of A star planner, set the costmap pointer and relevant costmap size.
    * @param costmap_ptr The shared pointer of costmap interface
    */
-  AStarPlanner(CostmapPtr costmap_ptr);
+  AStarPlanner();
+
+  void GiveCostMap(CostmapPtr costmap_ptr_);
   virtual ~AStarPlanner();
   /**
    * @brief Main Plan function(override the base-class function)
@@ -135,14 +136,8 @@ class AStarPlanner : public GlobalPlannerBase {
   //! vector that indicates the state of each cell
   std::vector<AStarPlanner::SearchState> state_;
 
-
+  CostmapPtr costmap_ptr_;
 };
-
-std::vector<int> AStarPlanner::f_score_;
-roborts_common::REGISTER_ALGORITHM(GlobalPlannerBase,
-                                 "a_star_planner",
-                                 AStarPlanner,
-                                 std::shared_ptr<roborts_costmap::CostmapInterface>);
 
 } //namespace roborts_global_planner
 

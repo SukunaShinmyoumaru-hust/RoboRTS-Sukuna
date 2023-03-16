@@ -328,6 +328,7 @@ bool CostmapInterface::GetRobotPose(tf::Stamped<tf::Pose> &global_pose) const {
   ros::Time current_time = ros::Time::now();
   try {
     tf_.transformPose(global_frame_, robot_pose, global_pose);
+    std::cout << "transform pose success!\n";
   }
   catch (tf::LookupException &ex) {
     ROS_ERROR("No Transform Error looking up robot pose: %s", ex.what());
