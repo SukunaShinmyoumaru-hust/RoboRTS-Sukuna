@@ -54,6 +54,7 @@ void add_path(){
     pl.position[0] = position[0];
     pl.position[1] = position[1];
     float target[2];
+#ifdef USE_MC_ARC
     target[0] = position[0] + start_buffer[0].forwards[0] * 0.833333;
     target[1] = position[1] + start_buffer[0].forwards[1] * 0.833333;
     position[0] = target[0];
@@ -94,6 +95,15 @@ void add_path(){
             plan_buffer_line(target,NOMIBAL_FEED,0,0);
         }
     }
+#else
+    for(int i = 0;i < start_buffer_tail;i++){
+      target[0] = position[0] + start_buffer[i].forwards[0];
+      target[1] = position[1] + start_buffer[i].forwards[1];
+      position[0] = target[0];
+      position[1] = target[1];
+      plan_buffer_line(target,NOMIBAL_FEED,0,0);
+    }
+#endif
     // planner_recalculate();
 }
 void grbl_init(){
@@ -305,9 +315,9 @@ void plan_buffer_line(float *target, float feed_rate, uint8_t invert_feed_rate,i
       junction_cos_theta -= pl.previous_unit_vec[idx] * unit_vec[idx];
     }
   }
-  feed_rate = 1000;
+  feed_rate = 100;
 
-  if(circle == 0) block->acceleration = 300;
+  if(circle == 0) block->acceleration = 50;
   else block->acceleration = 0;
   
   // TODO: Need to check this method handling zero junction speeds when starting from rest.

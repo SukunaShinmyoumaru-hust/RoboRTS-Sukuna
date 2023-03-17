@@ -37,7 +37,8 @@
 #define Y_AXIS 1
 #define X_DIRECTION_BIT   7 // MEGA2560 Digital Pin 30
 #define Y_DIRECTION_BIT   6 // MEGA2560 Digital Pin 31
-#define L_D 0.25
+#define L_D 1
+#define USE_MC_ARC
 
 typedef struct{
     int step;
