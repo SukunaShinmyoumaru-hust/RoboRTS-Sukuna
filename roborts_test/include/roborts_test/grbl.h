@@ -37,7 +37,7 @@
 #define Y_AXIS 1
 #define X_DIRECTION_BIT   7 // MEGA2560 Digital Pin 30
 #define Y_DIRECTION_BIT   6 // MEGA2560 Digital Pin 31
-#define L_D 1
+#define L_D 0.01
 #define USE_MC_ARC
 
 typedef struct{
@@ -144,4 +144,6 @@ void mc_arc(float *position, float *target, float *offset, float radius, float f
 void grbl_init();
 
 void add_path();
+
+void check_struct();
 #endif

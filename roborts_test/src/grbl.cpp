@@ -39,6 +39,11 @@ float* calculate_center(float first,float second,float R){
 }
 
 void check_struct(){
+
+  for(int i = 0;i < start_buffer_tail;i++){
+    ROS_INFO("steps %d:from %f %f,move to %f %f",i,start_buffer[i].last_target[0],start_buffer[i].last_target[1],
+    start_buffer[i].last_target[0]+start_buffer[i].forwards[0],start_buffer[i].last_target[1]+start_buffer[i].forwards[1]);
+  }
   for(int i = 0;i < block_buffer_head;i++){
     ROS_INFO("steps %d:from %f %f,move to %f %f,entry_velocity is %f,milimeter is %f",i,block_buffer[i].last_target[0],block_buffer[i].last_target[1],
     block_buffer[i].last_target[0]+block_buffer[i].steps[0],block_buffer[i].last_target[1]+block_buffer[i].steps[1],
@@ -68,14 +73,14 @@ void add_path(){
         target[1] = start_buffer[i+1].last_target[1] + start_buffer[i+1].forwards[1] * 0.1666667;
         if(abs(start_buffer[i].forwards[0]) > 20){
             float R = max(start_buffer[i].forwards[0]*0.16666667,start_buffer[i+1].forwards[1]*0.16666667);
-            R += 10;
+            R /= 2;
             float* k = calculate_center(start_buffer[i].forwards[0]*0.16666667,start_buffer[i+1].forwards[1]*0.16666667,R);
             mc_arc(position,target,k,R,NOMIBAL_FEED,5,0,1,0,0);
             free(k);
         }
         else{
             float R = max(start_buffer[i].forwards[1]*0.16666667,start_buffer[i+1].forwards[0]*0.16666667);
-            R += 10;
+            R /= 2;
             float* k = calculate_center(start_buffer[i+1].forwards[0]*0.16666667,start_buffer[i].forwards[1]*0.16666667,R);
             mc_arc(position,target,k,R,NOMIBAL_FEED,5,0,1,0,0);
             free(k);
@@ -315,9 +320,9 @@ void plan_buffer_line(float *target, float feed_rate, uint8_t invert_feed_rate,i
       junction_cos_theta -= pl.previous_unit_vec[idx] * unit_vec[idx];
     }
   }
-  feed_rate = 100;
+  feed_rate = 500;
 
-  if(circle == 0) block->acceleration = 50;
+  if(circle == 0) block->acceleration = 100;
   else block->acceleration = 0;
   
   // TODO: Need to check this method handling zero junction speeds when starting from rest.

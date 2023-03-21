@@ -46,7 +46,7 @@ GlobalPlannerClient::GlobalPlannerClient() :
     // move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, boost::bind(&GlobalPlannerClient::RvizMoveGoalCallBack, this, _1));
     amcl_pose = nh_.subscribe<geometry_msgs::PoseStamped>("/amcl_pose", 1000, &GlobalPlannerClient::get_amcl_pose, this);
     move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, &GlobalPlannerClient::RvizMoveGoalCallBack, this);
-    path_pub_ = nh_.advertise<nav_msgs::Path>("/global_planner_node/paths", 10);
+    path_pub_ = nh_.advertise<nav_msgs::Path>("/global_planner_node/pa", 10);
 
     tf_ptr_ = std::make_shared<tf::TransformListener>(ros::Duration(10));
     std::string map_path = ros::package::getPath("roborts_costmap") + \
@@ -64,8 +64,8 @@ void GlobalPlannerClient::calculate_struct(std::vector<geometry_msgs::PoseStampe
     float last_x;
     float last_y;
     //cross_? means starter point
-    float cross_x = path_[0].pose.position.x;
-    float cross_y = path_[0].pose.position.y;
+    float cross_x = path_[0].pose.position.x * 1000;
+    float cross_y = path_[0].pose.position.y * 1000;
     float now_x;
     float now_y;
     float future_x;
@@ -108,8 +108,8 @@ void GlobalPlannerClient::get_amcl_pose(const geometry_msgs::PoseStamped::ConstP
 
 bool GlobalPlannerClient::check_crash(){
   int index = find_closest();
-  float x = path_[index].pose.position.x;
-  float y = path_[index].pose.position.y;
+  float xx = path_[index].pose.position.x;
+  float yy = path_[index].pose.position.y;
   float x1,y1;
   unsigned int goal_x,goal_y;
   for(int i = index + 1;i < path_.size();i++){
@@ -120,53 +120,68 @@ bool GlobalPlannerClient::check_crash(){
                                           goal_x,
                                           goal_y);
 
-    if((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y) > 4){
+    if((x1 - xx) * (x1 - xx) + (y1 - yy) * (y1 - yy) > 4){
       return true;
     }
     else if(costmap_ptr_->GetCostMap()->GetCost(goal_x,goal_y) > 253){
-      ROS_INFO("G");
+      ROS_INFO("at %f %f G!",x1,y1);
       return false;
     }
   } 
   return true;
 }
 
-void GlobalPlannerClient::RvizMoveGoalCallBack(const geometry_msgs::PoseStamped::ConstPtr &goal) {
-  while(1){
-    ast.Plan(current_start,*goal,path_);
+void GlobalPlannerClient::RvizMoveGoalCallBack(const geometry_msgs::PoseStamped::ConstPtr &goalptr) {
+  #ifdef USE_NOT_GLOBAL_PLANNER
+  goal = *goalptr;
+  while(judgeFinish() == 0){
+    ast.Plan(current_start,*goalptr,path_);
     path__.poses = path_;
     path__.header.frame_id = costmap_ptr_->GetGlobalFrameID();
     path_pub_.publish(path__);
     plan_reset();
     calculate_struct(path_);
     add_path();
-    /*
+    do_simple_work();
+    // check_struct();
+    // break;
+    
     geometry_msgs::PoseStamped test;
     path_.clear();
     for(int i = 0;i < block_buffer_head;i++){
       for(int j = 0;j < 50;j++){
-        test.pose.position.x = block_buffer[i].last_target[0] + (block_buffer[i].steps[0] * j / 50000.0);
-        test.pose.position.y = block_buffer[i].last_target[1] + (block_buffer[i].steps[1] * j / 50000.0);
+        test.pose.position.x = (block_buffer[i].last_target[0] + (block_buffer[i].steps[0] * j / 50.0)) / 1000;
+        test.pose.position.y = (block_buffer[i].last_target[1] + (block_buffer[i].steps[1] * j / 50.0)) / 1000;
         path_.push_back(test);
       }
     }
-    */
-    // std::cout << "add_path finished\n";
-    while(check_crash()){
+
+    path__.poses = path_;
+    path_pub_.publish(path__);
+    
+    while(check_crash() && judgeFinish() == 0){
       costmap_ptr_->GetRobotPose(current_start);
       x = current_start.pose.position.x;
       y = current_start.pose.position.y;
       
-      yaw = atan2(current_start.pose.orientation.w*current_start.pose.orientation.z+current_start.pose.orientation.x*current_start.pose.orientation.y,
-                  1-2*(current_start.pose.orientation.y*current_start.pose.orientation.y+current_start.pose.orientation.z*current_start.pose.orientation.z));
+      // yaw = atan2(current_start.pose.orientation.w*current_start.pose.orientation.z+current_start.pose.orientation.x*current_start.pose.orientation.y,
+      //            1-2*(current_start.pose.orientation.y*current_start.pose.orientation.y+current_start.pose.orientation.z*current_start.pose.orientation.z));
 
-      std::this_thread::sleep_for(std::chrono::milliseconds(50));
+      yaw = tf::getYaw(current_start.pose.orientation);
 
       calculate_v();
 
+      std::this_thread::sleep_for(std::chrono::milliseconds(50));
+
     }
     ROS_INFO("Crash Danger");
+    
   }
+  #else
+    goal = *goalptr;
+    SendGoal();
+  #endif
+  
 }
 /*
   @param:path_
@@ -204,18 +219,22 @@ int GlobalPlannerClient::find_point(int min_index){
   return path_.size()-1;
 }
 
+bool GlobalPlannerClient::judgeFinish(){
+  float xx = goal.pose.position.x;
+  float yy = goal.pose.position.y;
+  return ((xx - x) * (xx - x) + (yy - y) * (yy - y) < 0.01);
+}
 double GlobalPlannerClient::do_pure_pursuit(){
   int min_index = find_closest();
   int index = find_point(min_index);
   double angle;
-  float delta_x = x - path_[min_index].pose.position.x;
-  float delta_y = y - path_[min_index].pose.position.y;
+  float delta_x = path_[index].pose.position.x - x;
+  float delta_y = path_[index].pose.position.y - y;
   angle = atan2(delta_y,delta_x);
   angle -= yaw;
-  ROS_INFO("%f %f %f %f",path_[index].pose.position.x,path_[index].pose.position.y,path_[min_index].pose.position.x,path_[min_index].pose.position.y);
-  ROS_INFO("min_index:%d index:%d Do pure_pursuit:yaw is %f angle is %f",min_index,index,yaw,angle);
-  // return atan2(2*sqrt((delta_x*delta_x)+(delta_y*delta_y))*sin(angle),sqrt(L_D)) * 1.2;
-  return angle * 1.2;
+  // ROS_INFO("%f %f %f %f",path_[index].pose.position.x,path_[index].pose.position.y,path_[min_index].pose.position.x,path_[min_index].pose.position.y);
+  // ROS_INFO("min_index:%d index:%d Do pure_pursuit:yaw is %f angle is %f",min_index,index,yaw,angle);
+  return atan2(2*sqrt((delta_x*delta_x)+(delta_y*delta_y))*sin(angle),sqrt(L_D)) * 1.2;
 }
 
 bool GlobalPlannerClient::judgeAcc(){
@@ -223,37 +242,53 @@ bool GlobalPlannerClient::judgeAcc(){
           abs(last_acc.accel.linear.y - acc.accel.linear.y) > 0.01 ||
           abs(last_acc.accel.angular.z - acc.accel.angular.z) > 0.01);
 }
+void GlobalPlannerClient::do_simple_work(){
+  for(int i = 0;i < block_buffer_head;i++){
+    if(block_buffer[i].steps[0] != 0){
+      A[i] = ((float)block_buffer[i].steps[1]) / block_buffer[i].steps[0];
+      C[i] = block_buffer[i].last_target[1] - A[i] * block_buffer[i].last_target[0];
+    }
+    else{
+      A[i] = 114514;;
+      C[i] = block_buffer[i].last_target[0];
+    }
+    // ROS_INFO("A[%d] is %f C[%d] is %f",i,A[i],i,C[i]);
 
+  }
+}
 void GlobalPlannerClient::calculate_v(){
   // ROS_INFO("1");
   int i;
-  int index_ = find_closest();
-  x = path_[index_].pose.position.x;
-  y = path_[index_].pose.position.y;
   float unit_vec[2];
   float index = 999999999;
-  float A,B,C,P;
+  float P;
+  int a = find_closest();
+  float xx = path_[a].pose.position.x * 1000;
+  float yy = path_[a].pose.position.y * 1000;
   int min_index = 1;
   for(i = 0;i < block_buffer_head;i++){
-    A = ((float)block_buffer[i].steps[1]) / block_buffer[i].steps[0];
-    B = -1;
-    C = block_buffer[i].last_target[1] - A * block_buffer[i].last_target[0];
-    P = abs(A * x + B * y + C) / sqrt(A * A + B * B);
+    if(A[i] != 114514){
+      P = abs(A[i] * xx - yy  + C[i]) / sqrt(A[i] * A[i] + 1);
+    }
+    else{
+      P = abs(xx - C[i]);
+    }
     if(P < index){
       index = P;
       min_index = i;
     }
+    // ROS_INFO("pre-handle: %d,distance is %f",i,P);
   }
   i = min_index;
   
   //we choose block_buffer[i]
   float V1,V2,V3,V4;
-  float x1 = block_buffer[i].last_target[0] - x;
-  float y1 = block_buffer[i].last_target[1] - y; 
-  float x2 = block_buffer[i].last_target[0] + (block_buffer[i].steps[0]) / 1000.0 - x;
-  float y2 = block_buffer[i].last_target[1] + (block_buffer[i].steps[1]) / 1000.0 - y;
-  float D1 = sqrt(x1 * x1 + y1 * y1) * 1000;
-  float D2 = sqrt(x2 * x2 + y2 * y2) * 1000;
+  float x1 = block_buffer[i].last_target[0] - x * 1000;
+  float y1 = block_buffer[i].last_target[1] - y * 1000; 
+  float x2 = block_buffer[i].last_target[0] + (block_buffer[i].steps[0])  - x * 1000;
+  float y2 = block_buffer[i].last_target[1] + (block_buffer[i].steps[1])  - y * 1000;
+  float D1 = sqrt(x1 * x1 + y1 * y1);
+  float D2 = sqrt(x2 * x2 + y2 * y2);
   int flag = 0;
   float V;
 
@@ -282,17 +317,19 @@ void GlobalPlannerClient::calculate_v(){
   }
   else{
     V = V1;
-    V += 10;
+    if(V < 10000) V = 10000;
   }
   // ROS_INFO("3");
   now_velocity = V;
   V = sqrt(V);
   V /= 1000;
 
+  // ROS_INFO("calculate that segment is %d D1 is %f D2 is %f flag is %d",i,D1,D2,flag);
+
   speed.linear.x = ((1.0 * block_buffer[i].steps[0]) / block_buffer[i].millimeters) * V;
   speed.linear.y = ((1.0 * block_buffer[i].steps[1]) / block_buffer[i].millimeters) * V;
   speed.angular.z = do_pure_pursuit();
-
+  
   acc.accel.linear.x = 0;
   acc.accel.linear.y = 0;
   acc.accel.angular.z = 0;
@@ -331,10 +368,10 @@ void GlobalPlannerClient::calculate_v(){
   // acc.accel.angular.z = (speed.angular.z - last_speed.angular.z) * 0.3;
   last_speed = speed;
   // if(judgeAcc()){
-    ROS_INFO("Segments:%d Publish new acc,%f %f %f,velocity is %f",i,acc.accel.linear.x,acc.accel.linear.y,speed.angular.z,V);
+    // ROS_INFO("Publish new acc,%f %f %f",i,speed.linear.x,speed.linear.y,speed.angular.z,V);
     cmd_vel_acc.publish(acc);
-    // last_acc = acc;
-  //}
+  //   last_acc = acc;
+  // }
 }
 
 // abandoned
@@ -343,14 +380,16 @@ void GlobalPlannerClient::FeedbackCb(const roborts_msgs::GlobalPlannerFeedbackCo
     plan_reset();
     calculate_struct(path_);
     add_path();
+    do_simple_work();
     // std::cout << "add_path finished\n";
     while(check_crash()){
       costmap_ptr_->GetRobotPose(current_start);
       x = current_start.pose.position.x;
       y = current_start.pose.position.y;
       
-      yaw = atan2(current_start.pose.orientation.w*current_start.pose.orientation.z+current_start.pose.orientation.x*current_start.pose.orientation.y,
-                  1-2*(current_start.pose.orientation.y*current_start.pose.orientation.y+current_start.pose.orientation.z*current_start.pose.orientation.z));
+      // yaw = atan2(current_start.pose.orientation.w*current_start.pose.orientation.z+current_start.pose.orientation.x*current_start.pose.// orientation.y,
+      //            1-2*(current_start.pose.orientation.y*current_start.pose.orientation.y+current_start.pose.orientation.z*current_start.pose.orientation.z));
+      yaw = tf::getYaw(current_start.pose.orientation);
       std::this_thread::sleep_for(std::chrono::milliseconds(500));
       
       calculate_v();

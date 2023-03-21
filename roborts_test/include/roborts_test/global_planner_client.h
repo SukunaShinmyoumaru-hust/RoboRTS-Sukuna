@@ -26,6 +26,7 @@
 
 #include "geometry_msgs/Twist.h"
 #include "roborts_msgs/TwistAccel.h"
+#define USE_NOT_GLOBAL_PLANNER
 
 class GlobalPlannerClient{
 public:
@@ -66,6 +67,10 @@ public:
     void RvizMoveGoalCallBack(const geometry_msgs::PoseStamped::ConstPtr &goal);
 
     bool check_crash();
+
+    void do_simple_work();
+
+    bool judgeFinish();
 private:
 
     AGlobalPlannerClient ac_;
@@ -93,6 +98,10 @@ private:
 
     nav_msgs::Path path__;
     CostmapPtr costmap_ptr_;
+
+
+    float A[100];
+    float C[100];
 };
 
 #endif
