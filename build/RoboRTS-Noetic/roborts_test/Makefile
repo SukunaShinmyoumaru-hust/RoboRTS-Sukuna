@@ -68,39 +68,27 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : test/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -113,27 +101,39 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : list_install_components/fast
+.PHONY : edit_cache/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,64 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
-.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
+RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/rule:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/rule
+.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/rule
 
 # Convenience name for target.
-visualization_msgs_generate_messages_cpp: RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
+look_ahead_planner_server: RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/rule
 
-.PHONY : visualization_msgs_generate_messages_cpp
+.PHONY : look_ahead_planner_server
 
 # fast build rule for target.
-visualization_msgs_generate_messages_cpp/fast:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
-.PHONY : visualization_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
-.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_lisp: RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_lisp
-
-# fast build rule for target.
-visualization_msgs_generate_messages_lisp/fast:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
-.PHONY : visualization_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_eus: RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_eus
-
-# fast build rule for target.
-visualization_msgs_generate_messages_eus/fast:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
-.PHONY : visualization_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
-.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_nodejs: RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-visualization_msgs_generate_messages_nodejs/fast:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
-.PHONY : visualization_msgs_generate_messages_nodejs/fast
+look_ahead_planner_server/fast:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build
+.PHONY : look_ahead_planner_server/fast
 
 # Convenience name for target.
 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule:
@@ -243,88 +198,145 @@ visualization_msgs_generate_messages_py/fast:
 .PHONY : visualization_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/rule:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/rule
-.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/rule
+RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-global_planner_client: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/rule
+visualization_msgs_generate_messages_nodejs: RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : global_planner_client
+.PHONY : visualization_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-global_planner_client/fast:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/build
-.PHONY : global_planner_client/fast
+visualization_msgs_generate_messages_nodejs/fast:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
+.PHONY : visualization_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/rule:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/rule
-.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/rule
+RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
+.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-local_planner_listener: RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/rule
+visualization_msgs_generate_messages_eus: RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
 
-.PHONY : local_planner_listener
+.PHONY : visualization_msgs_generate_messages_eus
 
 # fast build rule for target.
-local_planner_listener/fast:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/build
-.PHONY : local_planner_listener/fast
+visualization_msgs_generate_messages_eus/fast:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
+.PHONY : visualization_msgs_generate_messages_eus/fast
 
-src/global_planner_client.o: src/global_planner_client.cpp.o
+# Convenience name for target.
+RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
+.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : src/global_planner_client.o
+# Convenience name for target.
+visualization_msgs_generate_messages_lisp: RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_lisp
+
+# fast build rule for target.
+visualization_msgs_generate_messages_lisp/fast:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
+.PHONY : visualization_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f CMakeFiles/Makefile2 RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
+.PHONY : RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+visualization_msgs_generate_messages_cpp: RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_cpp
+
+# fast build rule for target.
+visualization_msgs_generate_messages_cpp/fast:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
+.PHONY : visualization_msgs_generate_messages_cpp/fast
+
+a_star_planner/a_star_planner.o: a_star_planner/a_star_planner.cpp.o
+
+.PHONY : a_star_planner/a_star_planner.o
 
 # target to build an object file
-src/global_planner_client.cpp.o:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o
-.PHONY : src/global_planner_client.cpp.o
+a_star_planner/a_star_planner.cpp.o:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/a_star_planner/a_star_planner.cpp.o
+.PHONY : a_star_planner/a_star_planner.cpp.o
 
-src/global_planner_client.i: src/global_planner_client.cpp.i
+a_star_planner/a_star_planner.i: a_star_planner/a_star_planner.cpp.i
 
-.PHONY : src/global_planner_client.i
+.PHONY : a_star_planner/a_star_planner.i
 
 # target to preprocess a source file
-src/global_planner_client.cpp.i:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.i
-.PHONY : src/global_planner_client.cpp.i
+a_star_planner/a_star_planner.cpp.i:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/a_star_planner/a_star_planner.cpp.i
+.PHONY : a_star_planner/a_star_planner.cpp.i
 
-src/global_planner_client.s: src/global_planner_client.cpp.s
+a_star_planner/a_star_planner.s: a_star_planner/a_star_planner.cpp.s
 
-.PHONY : src/global_planner_client.s
+.PHONY : a_star_planner/a_star_planner.s
 
 # target to generate assembly for a file
-src/global_planner_client.cpp.s:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.s
-.PHONY : src/global_planner_client.cpp.s
+a_star_planner/a_star_planner.cpp.s:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/a_star_planner/a_star_planner.cpp.s
+.PHONY : a_star_planner/a_star_planner.cpp.s
 
-src/local_planner_listener.o: src/local_planner_listener.cpp.o
+src/grbl.o: src/grbl.cpp.o
 
-.PHONY : src/local_planner_listener.o
+.PHONY : src/grbl.o
 
 # target to build an object file
-src/local_planner_listener.cpp.o:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/src/local_planner_listener.cpp.o
-.PHONY : src/local_planner_listener.cpp.o
+src/grbl.cpp.o:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/src/grbl.cpp.o
+.PHONY : src/grbl.cpp.o
 
-src/local_planner_listener.i: src/local_planner_listener.cpp.i
+src/grbl.i: src/grbl.cpp.i
 
-.PHONY : src/local_planner_listener.i
+.PHONY : src/grbl.i
 
 # target to preprocess a source file
-src/local_planner_listener.cpp.i:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/src/local_planner_listener.cpp.i
-.PHONY : src/local_planner_listener.cpp.i
+src/grbl.cpp.i:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/src/grbl.cpp.i
+.PHONY : src/grbl.cpp.i
 
-src/local_planner_listener.s: src/local_planner_listener.cpp.s
+src/grbl.s: src/grbl.cpp.s
 
-.PHONY : src/local_planner_listener.s
+.PHONY : src/grbl.s
 
 # target to generate assembly for a file
-src/local_planner_listener.cpp.s:
-	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/local_planner_listener.dir/src/local_planner_listener.cpp.s
-.PHONY : src/local_planner_listener.cpp.s
+src/grbl.cpp.s:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/src/grbl.cpp.s
+.PHONY : src/grbl.cpp.s
+
+src/look_ahead_planner_server.o: src/look_ahead_planner_server.cpp.o
+
+.PHONY : src/look_ahead_planner_server.o
+
+# target to build an object file
+src/look_ahead_planner_server.cpp.o:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/src/look_ahead_planner_server.cpp.o
+.PHONY : src/look_ahead_planner_server.cpp.o
+
+src/look_ahead_planner_server.i: src/look_ahead_planner_server.cpp.i
+
+.PHONY : src/look_ahead_planner_server.i
+
+# target to preprocess a source file
+src/look_ahead_planner_server.cpp.i:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/src/look_ahead_planner_server.cpp.i
+.PHONY : src/look_ahead_planner_server.cpp.i
+
+src/look_ahead_planner_server.s: src/look_ahead_planner_server.cpp.s
+
+.PHONY : src/look_ahead_planner_server.s
+
+# target to generate assembly for a file
+src/look_ahead_planner_server.cpp.s:
+	cd /home/sukuna/roborts_ws/build && $(MAKE) -f RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/build.make RoboRTS-Noetic/roborts_test/CMakeFiles/look_ahead_planner_server.dir/src/look_ahead_planner_server.cpp.s
+.PHONY : src/look_ahead_planner_server.cpp.s
 
 # Help Target
 help:
@@ -333,25 +345,27 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... visualization_msgs_generate_messages_cpp"
-	@echo "... visualization_msgs_generate_messages_lisp"
-	@echo "... visualization_msgs_generate_messages_eus"
-	@echo "... visualization_msgs_generate_messages_nodejs"
-	@echo "... install/local"
-	@echo "... visualization_msgs_generate_messages_py"
-	@echo "... global_planner_client"
-	@echo "... local_planner_listener"
-	@echo "... test"
-	@echo "... edit_cache"
-	@echo "... rebuild_cache"
-	@echo "... list_install_components"
 	@echo "... install"
-	@echo "... src/global_planner_client.o"
-	@echo "... src/global_planner_client.i"
-	@echo "... src/global_planner_client.s"
-	@echo "... src/local_planner_listener.o"
-	@echo "... src/local_planner_listener.i"
-	@echo "... src/local_planner_listener.s"
+	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... look_ahead_planner_server"
+	@echo "... visualization_msgs_generate_messages_py"
+	@echo "... install/local"
+	@echo "... visualization_msgs_generate_messages_nodejs"
+	@echo "... visualization_msgs_generate_messages_eus"
+	@echo "... visualization_msgs_generate_messages_lisp"
+	@echo "... visualization_msgs_generate_messages_cpp"
+	@echo "... a_star_planner/a_star_planner.o"
+	@echo "... a_star_planner/a_star_planner.i"
+	@echo "... a_star_planner/a_star_planner.s"
+	@echo "... src/grbl.o"
+	@echo "... src/grbl.i"
+	@echo "... src/grbl.s"
+	@echo "... src/look_ahead_planner_server.o"
+	@echo "... src/look_ahead_planner_server.i"
+	@echo "... src/look_ahead_planner_server.s"
 .PHONY : help
 
 

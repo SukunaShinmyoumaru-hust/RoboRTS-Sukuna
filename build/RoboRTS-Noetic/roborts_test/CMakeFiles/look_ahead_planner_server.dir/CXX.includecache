@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/include/roborts_test/grbl.h
+chrono
+-
+algorithm
+-
+condition_variable
+-
+mutex
+-
+thread
+-
+cmath
+-
+cstring
+-
+
+/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/grbl.cpp
+grbl.h
+/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/grbl.h
+

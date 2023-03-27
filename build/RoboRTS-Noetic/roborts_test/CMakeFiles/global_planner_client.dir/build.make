@@ -57,9 +57,35 @@ include RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/progres
 # Include the compile flags for this target's objects.
 include RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/flags.make
 
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.o: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/flags.make
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.o: /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/a_star_planner.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.o"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.o -c /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/a_star_planner.cpp
+
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.i"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/a_star_planner.cpp > CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.i
+
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.s"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/a_star_planner.cpp -o CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.s
+
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.o: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/flags.make
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.o: /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/proto/a_star_planner_config.pb.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.o"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.o -c /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/proto/a_star_planner_config.pb.cc
+
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.i"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/proto/a_star_planner_config.pb.cc > CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.i
+
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.s"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/proto/a_star_planner_config.pb.cc -o CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.s
+
 RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/flags.make
 RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o: /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/global_planner_client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o -c /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/global_planner_client.cpp
 
 RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.i: cmake_force
@@ -70,14 +96,33 @@ RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_plan
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.s"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/global_planner_client.cpp -o CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.s
 
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/grbl.cpp.o: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/flags.make
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/grbl.cpp.o: /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/grbl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/grbl.cpp.o"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/global_planner_client.dir/src/grbl.cpp.o -c /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/grbl.cpp
+
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/grbl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/global_planner_client.dir/src/grbl.cpp.i"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/grbl.cpp > CMakeFiles/global_planner_client.dir/src/grbl.cpp.i
+
+RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/grbl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/global_planner_client.dir/src/grbl.cpp.s"
+	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/src/grbl.cpp -o CMakeFiles/global_planner_client.dir/src/grbl.cpp.s
+
 # Object files for target global_planner_client
 global_planner_client_OBJECTS = \
-"CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o"
+"CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.o" \
+"CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.o" \
+"CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o" \
+"CMakeFiles/global_planner_client.dir/src/grbl.cpp.o"
 
 # External object files for target global_planner_client
 global_planner_client_EXTERNAL_OBJECTS =
 
+/home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/a_star_planner.cpp.o
+/home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/a_star_planner/proto/a_star_planner_config.pb.cc.o
 /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/global_planner_client.cpp.o
+/home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/src/grbl.cpp.o
 /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/build.make
 /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: /home/sukuna/roborts_ws/devel/lib/libroborts_costmap.so
 /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: /opt/ros/noetic/lib/libpcl_ros_filter.so
@@ -314,7 +359,7 @@ global_planner_client_EXTERNAL_OBJECTS =
 /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
 /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client: RoboRTS-Noetic/roborts_test/CMakeFiles/global_planner_client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable /home/sukuna/roborts_ws/devel/lib/roborts_test/global_planner_client"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/global_planner_client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

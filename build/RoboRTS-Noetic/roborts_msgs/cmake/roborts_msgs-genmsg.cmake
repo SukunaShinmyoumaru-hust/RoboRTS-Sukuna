@@ -19,27 +19,27 @@ add_custom_target(roborts_msgs_generate_messages ALL)
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg" "std_msgs/Header:roborts_msgs/LocalPlannerActionGoal:geometry_msgs/Pose:roborts_msgs/LocalPlannerFeedback:geometry_msgs/Point:roborts_msgs/LocalPlannerResult:geometry_msgs/Quaternion:nav_msgs/Path:actionlib_msgs/GoalID:roborts_msgs/LocalPlannerGoal:roborts_msgs/LocalPlannerActionFeedback:actionlib_msgs/GoalStatus:geometry_msgs/PoseStamped:roborts_msgs/LocalPlannerActionResult"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg" "actionlib_msgs/GoalID:roborts_msgs/LocalPlannerActionFeedback:roborts_msgs/LocalPlannerActionGoal:geometry_msgs/Point:geometry_msgs/Quaternion:roborts_msgs/LocalPlannerResult:geometry_msgs/Pose:actionlib_msgs/GoalStatus:roborts_msgs/LocalPlannerGoal:roborts_msgs/LocalPlannerActionResult:roborts_msgs/LocalPlannerFeedback:nav_msgs/Path:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg" "std_msgs/Header:geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Quaternion:nav_msgs/Path:actionlib_msgs/GoalID:roborts_msgs/LocalPlannerGoal:geometry_msgs/PoseStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg" "actionlib_msgs/GoalID:geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:roborts_msgs/LocalPlannerGoal:nav_msgs/Path:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg" "actionlib_msgs/GoalStatus:std_msgs/Header:roborts_msgs/LocalPlannerResult:actionlib_msgs/GoalID"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg" "actionlib_msgs/GoalStatus:actionlib_msgs/GoalID:roborts_msgs/LocalPlannerResult:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg" "actionlib_msgs/GoalStatus:std_msgs/Header:roborts_msgs/LocalPlannerFeedback:actionlib_msgs/GoalID"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg" "actionlib_msgs/GoalStatus:actionlib_msgs/GoalID:roborts_msgs/LocalPlannerFeedback:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg" "std_msgs/Header:geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Quaternion:nav_msgs/Path:geometry_msgs/PoseStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg" "geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:nav_msgs/Path:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg" NAME_WE)
@@ -54,27 +54,27 @@ add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg" "std_msgs/Header:roborts_msgs/GlobalPlannerActionFeedback:geometry_msgs/Pose:roborts_msgs/GlobalPlannerGoal:geometry_msgs/Point:roborts_msgs/GlobalPlannerActionResult:geometry_msgs/Quaternion:nav_msgs/Path:actionlib_msgs/GoalID:roborts_msgs/GlobalPlannerResult:actionlib_msgs/GoalStatus:roborts_msgs/GlobalPlannerActionGoal:geometry_msgs/PoseStamped:roborts_msgs/GlobalPlannerFeedback"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg" "roborts_msgs/GlobalPlannerResult:roborts_msgs/GlobalPlannerGoal:roborts_msgs/GlobalPlannerFeedback:roborts_msgs/GlobalPlannerActionResult:geometry_msgs/Quaternion:roborts_msgs/GlobalPlannerActionGoal:geometry_msgs/Point:roborts_msgs/GlobalPlannerActionFeedback:geometry_msgs/Pose:actionlib_msgs/GoalStatus:nav_msgs/Path:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg" "std_msgs/Header:geometry_msgs/Pose:roborts_msgs/GlobalPlannerGoal:geometry_msgs/Point:geometry_msgs/Quaternion:actionlib_msgs/GoalID:geometry_msgs/PoseStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg" "roborts_msgs/GlobalPlannerGoal:geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg" "actionlib_msgs/GoalStatus:std_msgs/Header:actionlib_msgs/GoalID:roborts_msgs/GlobalPlannerResult"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg" "actionlib_msgs/GoalStatus:actionlib_msgs/GoalID:roborts_msgs/GlobalPlannerResult:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg" "std_msgs/Header:geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Quaternion:nav_msgs/Path:actionlib_msgs/GoalID:actionlib_msgs/GoalStatus:geometry_msgs/PoseStamped:roborts_msgs/GlobalPlannerFeedback"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg" "geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:actionlib_msgs/GoalStatus:geometry_msgs/PoseStamped:nav_msgs/Path:actionlib_msgs/GoalID:roborts_msgs/GlobalPlannerFeedback:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg" "std_msgs/Header:geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Quaternion:geometry_msgs/PoseStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg" "geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg" NAME_WE)
@@ -84,27 +84,27 @@ add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg" "std_msgs/Header:geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Quaternion:nav_msgs/Path:geometry_msgs/PoseStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg" "geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:nav_msgs/Path:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg" "std_msgs/Header:roborts_msgs/ArmorDetectionGoal:roborts_msgs/ArmorDetectionResult:roborts_msgs/ArmorDetectionFeedback:roborts_msgs/ArmorDetectionActionFeedback:geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Quaternion:roborts_msgs/ArmorDetectionActionGoal:actionlib_msgs/GoalID:actionlib_msgs/GoalStatus:roborts_msgs/ArmorDetectionActionResult:geometry_msgs/PoseStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg" "roborts_msgs/ArmorDetectionGoal:roborts_msgs/ArmorDetectionFeedback:geometry_msgs/Quaternion:geometry_msgs/Point:roborts_msgs/ArmorDetectionResult:geometry_msgs/Pose:actionlib_msgs/GoalStatus:roborts_msgs/ArmorDetectionActionGoal:actionlib_msgs/GoalID:std_msgs/Header:roborts_msgs/ArmorDetectionActionFeedback:geometry_msgs/PoseStamped:roborts_msgs/ArmorDetectionActionResult"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg" "std_msgs/Header:roborts_msgs/ArmorDetectionGoal:actionlib_msgs/GoalID"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg" "roborts_msgs/ArmorDetectionGoal:actionlib_msgs/GoalID:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg" "actionlib_msgs/GoalStatus:std_msgs/Header:actionlib_msgs/GoalID:roborts_msgs/ArmorDetectionResult"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg" "actionlib_msgs/GoalStatus:actionlib_msgs/GoalID:roborts_msgs/ArmorDetectionResult:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg" "std_msgs/Header:roborts_msgs/ArmorDetectionFeedback:geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Quaternion:actionlib_msgs/GoalID:actionlib_msgs/GoalStatus:geometry_msgs/PoseStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg" "geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:actionlib_msgs/GoalStatus:roborts_msgs/ArmorDetectionFeedback:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg" NAME_WE)
@@ -119,12 +119,12 @@ add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg" "std_msgs/Header:geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Quaternion:geometry_msgs/PoseStamped"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg" "geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg" NAME_WE)
 add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg" "geometry_msgs/Accel:geometry_msgs/Vector3:geometry_msgs/Twist"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "roborts_msgs" "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg" "geometry_msgs/Vector3:geometry_msgs/Accel:geometry_msgs/Twist"
 )
 
 get_filename_component(_filename "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal/GimbalAngle.msg" NAME_WE)
@@ -206,31 +206,31 @@ add_custom_target(_roborts_msgs_generate_messages_check_deps_${_filename}
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
@@ -248,31 +248,31 @@ _generate_msg_cpp(roborts_msgs
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
@@ -284,31 +284,31 @@ _generate_msg_cpp(roborts_msgs
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
@@ -326,13 +326,13 @@ _generate_msg_cpp(roborts_msgs
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
   "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_cpp(roborts_msgs
@@ -519,31 +519,31 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS roborts_msgs_generate_messages_cpp)
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
@@ -561,31 +561,31 @@ _generate_msg_eus(roborts_msgs
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
@@ -597,31 +597,31 @@ _generate_msg_eus(roborts_msgs
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
@@ -639,13 +639,13 @@ _generate_msg_eus(roborts_msgs
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
   "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_eus(roborts_msgs
@@ -832,31 +832,31 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS roborts_msgs_generate_messages_eus)
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
@@ -874,31 +874,31 @@ _generate_msg_lisp(roborts_msgs
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
@@ -910,31 +910,31 @@ _generate_msg_lisp(roborts_msgs
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
@@ -952,13 +952,13 @@ _generate_msg_lisp(roborts_msgs
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
   "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_lisp(roborts_msgs
@@ -1145,31 +1145,31 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS roborts_msgs_generate_messages_lisp
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
@@ -1187,31 +1187,31 @@ _generate_msg_nodejs(roborts_msgs
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
@@ -1223,31 +1223,31 @@ _generate_msg_nodejs(roborts_msgs
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
@@ -1265,13 +1265,13 @@ _generate_msg_nodejs(roborts_msgs
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
   "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_nodejs(roborts_msgs
@@ -1458,31 +1458,31 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS roborts_msgs_generate_messages_node
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
@@ -1500,31 +1500,31 @@ _generate_msg_py(roborts_msgs
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
@@ -1536,31 +1536,31 @@ _generate_msg_py(roborts_msgs
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
+  "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg"
+  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
@@ -1578,13 +1578,13 @@ _generate_msg_py(roborts_msgs
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs
   "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Accel.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/roborts_msgs
 )
 _generate_msg_py(roborts_msgs

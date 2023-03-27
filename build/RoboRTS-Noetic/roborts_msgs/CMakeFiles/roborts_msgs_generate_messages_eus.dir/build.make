@@ -94,62 +94,62 @@ RoboRTS-Noetic/roborts_msgs/CMakeFiles/roborts_msgs_generate_messages_eus: /home
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerAction.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from roborts_msgs/LocalPlannerAction.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerAction.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from roborts_msgs/LocalPlannerActionGoal.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionGoal.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionResult.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionResult.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionResult.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionResult.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionResult.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionResult.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionResult.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerResult.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionResult.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from roborts_msgs/LocalPlannerActionResult.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionResult.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionFeedback.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionFeedback.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionFeedback.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerFeedback.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerActionFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp code from roborts_msgs/LocalPlannerActionFeedback.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerActionFeedback.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/LocalPlannerGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating EusLisp code from roborts_msgs/LocalPlannerGoal.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/LocalPlannerGoal.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
@@ -165,65 +165,65 @@ RoboRTS-Noetic/roborts_msgs/CMakeFiles/roborts_msgs_generate_messages_eus: /home
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerAction.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating EusLisp code from roborts_msgs/GlobalPlannerAction.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerAction.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating EusLisp code from roborts_msgs/GlobalPlannerActionGoal.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionGoal.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionResult.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionResult.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionResult.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionResult.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionResult.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionResult.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerResult.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionResult.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating EusLisp code from roborts_msgs/GlobalPlannerActionResult.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionResult.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerActionFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Generating EusLisp code from roborts_msgs/GlobalPlannerActionFeedback.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerActionFeedback.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Generating EusLisp code from roborts_msgs/GlobalPlannerGoal.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerGoal.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
@@ -234,60 +234,60 @@ RoboRTS-Noetic/roborts_msgs/CMakeFiles/roborts_msgs_generate_messages_eus: /home
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/nav_msgs/msg/Path.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/GlobalPlannerFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Generating EusLisp code from roborts_msgs/GlobalPlannerFeedback.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/GlobalPlannerFeedback.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionAction.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Generating EusLisp code from roborts_msgs/ArmorDetectionAction.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionAction.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionGoal.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionGoal.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionGoal.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionGoal.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionGoal.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionGoal.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Generating EusLisp code from roborts_msgs/ArmorDetectionActionGoal.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionGoal.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionResult.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionResult.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionResult.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionResult.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionResult.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionResult.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionResult.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionResult.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Generating EusLisp code from roborts_msgs/ArmorDetectionActionResult.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionResult.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionActionFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Generating EusLisp code from roborts_msgs/ArmorDetectionActionFeedback.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionActionFeedback.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
@@ -303,18 +303,18 @@ RoboRTS-Noetic/roborts_msgs/CMakeFiles/roborts_msgs_generate_messages_eus: /home
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/ArmorDetectionFeedback.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Generating EusLisp code from roborts_msgs/ArmorDetectionFeedback.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/devel/share/roborts_msgs/msg/ArmorDetectionFeedback.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
 
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/TwistAccel.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/TwistAccel.l: /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg
-/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/TwistAccel.l: /opt/ros/noetic/share/geometry_msgs/msg/Accel.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/TwistAccel.l: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
+/home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/TwistAccel.l: /opt/ros/noetic/share/geometry_msgs/msg/Accel.msg
 /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg/TwistAccel.l: /opt/ros/noetic/share/geometry_msgs/msg/Twist.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sukuna/roborts_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Generating EusLisp code from roborts_msgs/TwistAccel.msg"
 	cd /home/sukuna/roborts_ws/build/RoboRTS-Noetic/roborts_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis/TwistAccel.msg -Iroborts_msgs:/home/sukuna/roborts_ws/devel/share/roborts_msgs/msg -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/chassis -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/gimbal -Iroborts_msgs:/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_msgs/msg/referee_system -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p roborts_msgs -o /home/sukuna/roborts_ws/devel/share/roseus/ros/roborts_msgs/msg
