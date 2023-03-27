@@ -20,8 +20,6 @@
 #include <ros/ros.h>
 #include <geometry_msgs/PoseStamped.h>
 
-#include "proto/a_star_planner_config.pb.h"
-
 #include "alg_factory/algorithm_factory.h"
 #include "state/error_code.h"
 #include "costmap/costmap_interface.h"
@@ -37,15 +35,13 @@ typedef std::shared_ptr<tf::TransformListener> TfPtr;
  * @brief Global planner alogorithm class for A star under the representation of costmap
  */
 class AStarPlanner {
-
- public:
+public:
   /**
    * @brief Constructor of A star planner, set the costmap pointer and relevant costmap size.
    * @param costmap_ptr The shared pointer of costmap interface
    */
-  AStarPlanner();
+  AStarPlanner(CostmapPtr cost, float heuristic_factor = 1, int inaccessible_cost = 253, float goal_search_tolerance = 0.45);
 
-  void GiveCostMap(CostmapPtr costmap_ptr_);
   virtual ~AStarPlanner();
   /**
    * @brief Main Plan function(override the base-class function)

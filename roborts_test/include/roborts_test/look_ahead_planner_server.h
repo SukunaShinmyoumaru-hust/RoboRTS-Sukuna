@@ -11,10 +11,8 @@
 #include <tf/transform_listener.h>
 #include "actionlib/client/simple_action_client.h"
 #include "nav_msgs/Path.h"
-#include "/home/sukuna/roborts_ws/devel/include/roborts_msgs/GlobalPlannerAction.h"
-#include "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/a_star_planner/a_star_planner.h"
+#include "./a_star_planner/a_star_planner.h"
 
-#include "alg_factory/algorithm_factory.h"
 #include "state/error_code.h"
 #include "io/io.h"
 #include "state/node_state.h"
@@ -22,29 +20,21 @@
 #include <tf/transform_listener.h>
 #include "costmap/costmap_interface.h"
 
-#include "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_costmap/include/costmap/costmap_interface.h"
+#include "costmap/costmap_interface.h"
 
 #include "geometry_msgs/Twist.h"
 #include "roborts_msgs/TwistAccel.h"
+#include "./include/roborts_test/grbl.h"
 #define USE_NOT_GLOBAL_PLANNER
 
-class GlobalPlannerClient{
+class LookAheadPlannerServer{
 public:
     typedef std::shared_ptr<roborts_costmap::CostmapInterface> CostmapPtr;
     typedef std::shared_ptr<tf::TransformListener> TfPtr;
-    typedef actionlib::SimpleActionClient<roborts_msgs::GlobalPlannerAction> AGlobalPlannerClient;
 
-    GlobalPlannerClient();
+    LookAheadPlannerServer();
 
-    ~GlobalPlannerClient() = default;
-
-    void FeedbackCb(const roborts_msgs::GlobalPlannerFeedbackConstPtr& feedback);
-
-    void ActiveCallback();
-
-    void DoneCallback(const actionlib::SimpleClientGoalState& state,  const roborts_msgs::GlobalPlannerResultConstPtr& result);
-
-    void SendGoal();
+    ~LookAheadPlannerServer() = default;
 
     void calculate_struct(std::vector<geometry_msgs::PoseStamped> path_);
 
@@ -72,10 +62,12 @@ public:
 
     bool judgeFinish();
 private:
-
-    AGlobalPlannerClient ac_;
     geometry_msgs::PoseStamped goal;
     TfPtr tf_ptr_;
+    std::string map_path;
+    nav_msgs::Path path__;
+    CostmapPtr costmap_ptr_;
+    roborts_global_planner::AStarPlanner ast;
     std::vector<geometry_msgs::PoseStamped> path_;
     ros::NodeHandle nh_;
     ros::NodeHandle rviz_nh_;
@@ -94,14 +86,13 @@ private:
     geometry_msgs::PoseStamped current_start;
     ros::Subscriber move_goal_sub_;
     ros::Publisher path_pub_;
-    roborts_global_planner::AStarPlanner ast;
-
-    nav_msgs::Path path__;
-    CostmapPtr costmap_ptr_;
-
-
+    
     float A[100];
     float C[100];
+
+    float pure_pursuit_C;
+    float L_D;
+    float now_velocity;
 };
 
 #endif

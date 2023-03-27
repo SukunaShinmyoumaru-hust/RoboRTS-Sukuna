@@ -1,4 +1,4 @@
-#include "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/include/roborts_test/grbl.h"
+#include "grbl.h"
 plan_block_t block_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
 uint8_t block_buffer_tail;
 uint8_t block_buffer_head;     // Index of the next block to be pushed
@@ -41,11 +41,11 @@ float* calculate_center(float first,float second,float R){
 void check_struct(){
 
   for(int i = 0;i < start_buffer_tail;i++){
-    ROS_INFO("steps %d:from %f %f,move to %f %f",i,start_buffer[i].last_target[0],start_buffer[i].last_target[1],
+    printf("steps %d:from %f %f,move to %f %f\n",i,start_buffer[i].last_target[0],start_buffer[i].last_target[1],
     start_buffer[i].last_target[0]+start_buffer[i].forwards[0],start_buffer[i].last_target[1]+start_buffer[i].forwards[1]);
   }
   for(int i = 0;i < block_buffer_head;i++){
-    ROS_INFO("steps %d:from %f %f,move to %f %f,entry_velocity is %f,milimeter is %f",i,block_buffer[i].last_target[0],block_buffer[i].last_target[1],
+    printf("steps %d:from %f %f,move to %f %f,entry_velocity is %f,milimeter is %f\n",i,block_buffer[i].last_target[0],block_buffer[i].last_target[1],
     block_buffer[i].last_target[0]+block_buffer[i].steps[0],block_buffer[i].last_target[1]+block_buffer[i].steps[1],
     sqrt(block_buffer[i].entry_speed_sqr),block_buffer[i].millimeters);
   }

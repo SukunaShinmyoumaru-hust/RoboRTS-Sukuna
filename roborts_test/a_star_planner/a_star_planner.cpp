@@ -22,27 +22,16 @@ namespace roborts_global_planner{
     using roborts_common::ErrorInfo;
     std::vector<int> AStarPlanner::f_score_;
 
-    AStarPlanner::AStarPlanner(){
-
-    }
-
-    void AStarPlanner::GiveCostMap(CostmapPtr cost){
+    AStarPlanner::AStarPlanner(CostmapPtr cost, float heuristic_factor, int inaccessible_cost, float goal_search_tolerance){
         costmap_ptr_ = cost;
         gridmap_width_ = costmap_ptr_->GetCostMap()->GetSizeXCell();
         gridmap_height_ = costmap_ptr_->GetCostMap()->GetSizeYCell();
         cost_ = costmap_ptr_->GetCostMap()->GetCharMap();
-        AStarPlannerConfig a_star_planner_config;
-        std::string full_path = ros::package::getPath("roborts_planning") + "/global_planner/a_star_planner/"\
-      "config/a_star_planner_config.prototxt";
 
-        if (!roborts_common::ReadProtoFromTextFile(full_path.c_str(),
-                                                   &a_star_planner_config)) {
-            ROS_ERROR("Cannot load a star planner protobuf configuration file.");
-        }
         //  AStarPlanner param config
-        heuristic_factor_ = a_star_planner_config.heuristic_factor();
-        inaccessible_cost_ = a_star_planner_config.inaccessible_cost();
-        goal_search_tolerance_ = a_star_planner_config.goal_search_tolerance()/costmap_ptr_->GetCostMap()->GetResolution();
+        heuristic_factor_ = heuristic_factor;
+        inaccessible_cost_ = inaccessible_cost;
+        goal_search_tolerance_ = goal_search_tolerance;
     }
 
     AStarPlanner::~AStarPlanner(){
@@ -228,30 +217,25 @@ namespace roborts_global_planner{
 
     }
 
-    roborts_common::ErrorInfo AStarPlanner::GetMoveCost(const int &current_index,
-                                      const int &neighbor_index,
-                                      int &move_cost,
-                                      bool &down,
-                                      bool &right){
-        
+    roborts_common::ErrorInfo AStarPlanner::GetMoveCost(const int &current_index, const int &neighbor_index, int &move_cost, bool &down, bool &right){
         if (neighbor_index - current_index == 1 ) {
             move_cost = right? RIGHT : WRONG;
         }else if (neighbor_index - current_index == -1){
             move_cost = right? WRONG : RIGHT;
         }else if (neighbor_index - current_index == gridmap_width_){
             move_cost = down ? RIGHT : WRONG;
-        }else if (neighbor_index - current_index == -gridmap_width_){
+        }else if (neighbor_index - current_index == - gridmap_width_){
             move_cost = down ? WRONG : RIGHT;
-        }else if (abs(neighbor_index - current_index) == (gridmap_width_ + 1) ||
-                   abs(neighbor_index - current_index) == (gridmap_width_ - 1)) {
+        }else if (abs(neighbor_index - current_index) == (gridmap_width_ + 1) || abs(neighbor_index - current_index) == (gridmap_width_ - 1)) {
             move_cost = CROSS;
-        } else {
-            return ErrorInfo(ErrorCode::GP_MOVE_COST_ERROR,
-                             "Move cost can't be calculated cause current neighbor index is not accessible");
+        }else{
+            return ErrorInfo(ErrorCode::GP_MOVE_COST_ERROR, "Move cost can't be calculated cause current neighbor index is not accessible");
         }
+        
         int parent = parent_[current_index];
         int punishment = ((neighbor_index - current_index) == (current_index - parent)) ? 0 : 1000;
         move_cost += punishment;
+
         return ErrorInfo(ErrorCode::OK);
     }
 

@@ -20,16 +20,17 @@ find_package(catkin REQUIRED COMPONENTS
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  ./include/roborts_test
+  ./
 )
 
-add_executable(global_planner_client
+add_executable(look_ahead_planner_server
   a_star_planner/a_star_planner.cpp
-  a_star_planner/proto/a_star_planner_config.pb.cc
-  src/global_planner_client.cpp
+  src/look_ahead_planner_server.cpp
   src/grbl.cpp
 )
 
-target_link_libraries(global_planner_client
+target_link_libraries(look_ahead_planner_server
   PRIVATE
   roborts_costmap
   ${catkin_LIBRARIES}
@@ -37,5 +38,5 @@ target_link_libraries(global_planner_client
   ${GLOG_LIBRARY}
 )
 
-add_dependencies(global_planner_client
+add_dependencies(look_ahead_planner_server
   roborts_msgs_generate_messages)

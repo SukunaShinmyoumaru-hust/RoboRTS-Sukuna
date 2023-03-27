@@ -6,23 +6,8 @@
 #include <condition_variable>
 #include <mutex>
 #include <thread>
-
-#include "actionlib/client/simple_action_client.h"
-#include "nav_msgs/Path.h"
-#include "/home/sukuna/roborts_ws/devel/include/roborts_msgs/GlobalPlannerAction.h"
-
-#include "alg_factory/algorithm_factory.h"
-#include "state/error_code.h"
-#include "io/io.h"
-#include "state/node_state.h"
-#include <math.h>
-#include <tf/transform_listener.h>
-#include "costmap/costmap_interface.h"
-
-#include "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_costmap/include/costmap/costmap_interface.h"
-
-#include "geometry_msgs/Twist.h"
-#include "roborts_msgs/TwistAccel.h"
+#include <cmath>
+#include <cstring>
 
 #define BLOCK_BUFFER_SIZE 100
 #define NOMIBAL_FEED 50
@@ -37,7 +22,6 @@
 #define Y_AXIS 1
 #define X_DIRECTION_BIT   7 // MEGA2560 Digital Pin 30
 #define Y_DIRECTION_BIT   6 // MEGA2560 Digital Pin 31
-#define L_D 0.01
 #define USE_MC_ARC
 
 typedef struct{

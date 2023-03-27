@@ -1,5 +1,5 @@
-#include "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/include/roborts_test/global_planner_client.h"
-#include "/home/sukuna/roborts_ws/src/RoboRTS-Noetic/roborts_test/include/roborts_test/grbl.h"
+#include "look_ahead_planner_server.h"
+#include "grbl.h"
 
 extern plan_block_t block_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
 extern uint8_t block_buffer_tail;
@@ -27,11 +27,10 @@ static bool judgenogo(float x1,float y1,float x2,float y2){
     return (abs(x1 - x2) < 20 || abs(y1 - y2) < 20);
 }
 
-GlobalPlannerClient::GlobalPlannerClient() :
-    ac_("global_planner_node_action", true)
+LookAheadPlannerServer::LookAheadPlannerServer() : tf_ptr_(std::make_shared<tf::TransformListener>(ros::Duration(10))),
+map_path(ros::package::getPath("roborts_costmap") + "/config/costmap_parameter_config_for_global_plan.prototxt"),
+costmap_ptr_(std::make_shared<roborts_costmap::CostmapInterface>("global_costmap",*tf_ptr_,map_path.c_str())), ast(costmap_ptr_)
 {   
-    ac_.waitForServer();
-    ROS_INFO("Action server started, sending goal.");
     last_speed.linear.x = 0;
     last_speed.linear.y = 0;
     last_speed.angular.z = 0;
@@ -42,24 +41,18 @@ GlobalPlannerClient::GlobalPlannerClient() :
     now_velocity = 10;
     cmd_vel = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 5);
     cmd_vel_acc = nh_.advertise<roborts_msgs::TwistAccel>("/cmd_vel_acc", 5);
-    // amcl_pose = nh_.subscribe<geometry_msgs::PoseStamped>("amcl_pose", 1000, boost::bind(&GlobalPlannerClient::get_amcl_pose, this, _1));
-    // move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, boost::bind(&GlobalPlannerClient::RvizMoveGoalCallBack, this, _1));
-    amcl_pose = nh_.subscribe<geometry_msgs::PoseStamped>("/amcl_pose", 1000, &GlobalPlannerClient::get_amcl_pose, this);
-    move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, &GlobalPlannerClient::RvizMoveGoalCallBack, this);
+    // amcl_pose = nh_.subscribe<geometry_msgs::PoseStamped>("amcl_pose", 1000, boost::bind(&LookAheadPlannerServer::get_amcl_pose, this, _1));
+    // move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, boost::bind(&LookAheadPlannerServer::RvizMoveGoalCallBack, this, _1));
+    // amcl_pose = nh_.subscribe<geometry_msgs::PoseStamped>("/amcl_pose", 1000, &LookAheadPlannerServer::get_amcl_pose, this);
+    move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, &LookAheadPlannerServer::RvizMoveGoalCallBack, this);
     path_pub_ = nh_.advertise<nav_msgs::Path>("/global_planner_node/pa", 10);
-
-    tf_ptr_ = std::make_shared<tf::TransformListener>(ros::Duration(10));
-    std::string map_path = ros::package::getPath("roborts_costmap") + \
-        "/config/costmap_parameter_config_for_global_plan.prototxt";
-    costmap_ptr_ = std::make_shared<roborts_costmap::CostmapInterface>("global_costmap",
-                                                                            *tf_ptr_,
-                                                                            map_path.c_str());
-    ast.GiveCostMap(costmap_ptr_);
-
+    nh_.getParam("pure_pursuit_c",pure_pursuit_C);
+    nh_.getParam("l_d",L_D);
 }
 
 
-void GlobalPlannerClient::calculate_struct(std::vector<geometry_msgs::PoseStamped> path_){
+
+void LookAheadPlannerServer::calculate_struct(std::vector<geometry_msgs::PoseStamped> path_){
     int size = path_.size();
     float last_x;
     float last_y;
@@ -99,14 +92,14 @@ void GlobalPlannerClient::calculate_struct(std::vector<geometry_msgs::PoseStampe
     }
 }
 
-void GlobalPlannerClient::get_amcl_pose(const geometry_msgs::PoseStamped::ConstPtr& msg){
+void LookAheadPlannerServer::get_amcl_pose(const geometry_msgs::PoseStamped::ConstPtr& msg){
   yaw = tf::getYaw(msg->pose.orientation);
   current_start = *msg;
   x = current_start.pose.position.x;
   y = current_start.pose.position.y;
 }
 
-bool GlobalPlannerClient::check_crash(){
+bool LookAheadPlannerServer::check_crash(){
   int index = find_closest();
   float xx = path_[index].pose.position.x;
   float yy = path_[index].pose.position.y;
@@ -131,7 +124,7 @@ bool GlobalPlannerClient::check_crash(){
   return true;
 }
 
-void GlobalPlannerClient::RvizMoveGoalCallBack(const geometry_msgs::PoseStamped::ConstPtr &goalptr) {
+void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamped::ConstPtr &goalptr) {
   #ifdef USE_NOT_GLOBAL_PLANNER
   goal = *goalptr;
   while(judgeFinish() == 0){
@@ -187,7 +180,7 @@ void GlobalPlannerClient::RvizMoveGoalCallBack(const geometry_msgs::PoseStamped:
   @param:path_
   @return:find the closet point
 */
-int GlobalPlannerClient::find_closest(){
+int LookAheadPlannerServer::find_closest(){
   double min_value = 99999999999;
   int min_index = 0;
   for(int i = 0;i < path_.size();i++){
@@ -203,7 +196,7 @@ int GlobalPlannerClient::find_closest(){
   return min_index;
 }
 
-int GlobalPlannerClient::find_point(int min_index){
+int LookAheadPlannerServer::find_point(int min_index){
   double l = L_D;
   float xx = path_[min_index].pose.position.x;
   float yy = path_[min_index].pose.position.y;
@@ -219,12 +212,12 @@ int GlobalPlannerClient::find_point(int min_index){
   return path_.size()-1;
 }
 
-bool GlobalPlannerClient::judgeFinish(){
+bool LookAheadPlannerServer::judgeFinish(){
   float xx = goal.pose.position.x;
   float yy = goal.pose.position.y;
   return ((xx - x) * (xx - x) + (yy - y) * (yy - y) < 0.01);
 }
-double GlobalPlannerClient::do_pure_pursuit(){
+double LookAheadPlannerServer::do_pure_pursuit(){
   int min_index = find_closest();
   int index = find_point(min_index);
   double angle;
@@ -237,12 +230,12 @@ double GlobalPlannerClient::do_pure_pursuit(){
   return atan2(2*sqrt((delta_x*delta_x)+(delta_y*delta_y))*sin(angle),sqrt(L_D)) * 1.2;
 }
 
-bool GlobalPlannerClient::judgeAcc(){
+bool LookAheadPlannerServer::judgeAcc(){
   return (abs(last_acc.accel.linear.x - acc.accel.linear.x) > 0.01 || 
           abs(last_acc.accel.linear.y - acc.accel.linear.y) > 0.01 ||
           abs(last_acc.accel.angular.z - acc.accel.angular.z) > 0.01);
 }
-void GlobalPlannerClient::do_simple_work(){
+void LookAheadPlannerServer::do_simple_work(){
   for(int i = 0;i < block_buffer_head;i++){
     if(block_buffer[i].steps[0] != 0){
       A[i] = ((float)block_buffer[i].steps[1]) / block_buffer[i].steps[0];
@@ -256,7 +249,7 @@ void GlobalPlannerClient::do_simple_work(){
 
   }
 }
-void GlobalPlannerClient::calculate_v(){
+void LookAheadPlannerServer::calculate_v(){
   // ROS_INFO("1");
   int i;
   float unit_vec[2];
@@ -373,9 +366,9 @@ void GlobalPlannerClient::calculate_v(){
   //   last_acc = acc;
   // }
 }
-
+/*
 // abandoned
-void GlobalPlannerClient::FeedbackCb(const roborts_msgs::GlobalPlannerFeedbackConstPtr& feedback){
+void LookAheadPlannerServer::FeedbackCb(const roborts_msgs::GlobalPlannerFeedbackConstPtr& feedback){
     path_ = feedback->path.poses;
     plan_reset();
     calculate_struct(path_);
@@ -398,21 +391,21 @@ void GlobalPlannerClient::FeedbackCb(const roborts_msgs::GlobalPlannerFeedbackCo
     SendGoal();
 }
 
-void GlobalPlannerClient::DoneCallback(const actionlib::SimpleClientGoalState& state,  const roborts_msgs::GlobalPlannerResultConstPtr& result){
+void LookAheadPlannerServer::DoneCallback(const actionlib::SimpleClientGoalState& state,  const roborts_msgs::GlobalPlannerResultConstPtr& result){
     ROS_INFO("The goal is done with %s!",state.toString().c_str());
 }
 
-void GlobalPlannerClient::ActiveCallback() {
+void LookAheadPlannerServer::ActiveCallback() {
     ROS_INFO("Action server has recived the goal, the goal is active!");
 }
 
-void GlobalPlannerClient::SendGoal(){
+void LookAheadPlannerServer::SendGoal(){
     roborts_msgs::GlobalPlannerGoal command_;
     command_.goal = goal;
     ac_.sendGoal(command_,
-                boost::bind(&GlobalPlannerClient::DoneCallback, this, _1, _2),
-                boost::bind(&GlobalPlannerClient::ActiveCallback, this),
-                boost::bind(&GlobalPlannerClient::FeedbackCb, this, _1));
+                boost::bind(&LookAheadPlannerServer::DoneCallback, this, _1, _2),
+                boost::bind(&LookAheadPlannerServer::ActiveCallback, this),
+                boost::bind(&LookAheadPlannerServer::FeedbackCb, this, _1));
     
     bool finished_before_timeout = ac_.waitForResult(ros::Duration(30.0));
 
@@ -423,13 +416,13 @@ void GlobalPlannerClient::SendGoal(){
     else
         ROS_INFO("Action did not finish before the time out.");
 }
-
+*/
 int main(int argc,char** argv){
-  ros::init(argc, argv, "global_planner_client");
+  ros::init(argc, argv, "look_ahead_planner_server");
 
   ros::NodeHandle n;
 
-  GlobalPlannerClient global_planner_client;
+  LookAheadPlannerServer global_planner_client;
   
   grbl_init();
   while(ros::ok()){
