@@ -1,16 +1,4 @@
 #include "grbl.h"
-plan_block_t block_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
-uint8_t block_buffer_tail;
-uint8_t block_buffer_head;     // Index of the next block to be pushed
-uint8_t next_buffer_head;      // Index of the next buffer head
-uint8_t block_buffer_planned;  // Index of the optimally planned block
-float now_velocity;
-settings_t settings;
-temp_block_t start_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
-int start_buffer_tail;
-// Define planner variables
-
-planner_t pl;
 
 static float min(float a,float b){
     return a < b ? a : b;
@@ -18,13 +6,6 @@ static float min(float a,float b){
 
 static float max(float a,float b){
     return a > b ? a : b;
-}
-
-uint8_t get_direction_pin_mask(uint8_t axis_idx)
-{
-  if ( axis_idx == X_AXIS ) { return((1<<X_DIRECTION_BIT)); }
-  if ( axis_idx == Y_AXIS ) { return((1<<Y_DIRECTION_BIT)); }
-  return 0;
 }
 
 float* calculate_center(float first,float second,float R){
@@ -38,7 +19,7 @@ float* calculate_center(float first,float second,float R){
     return answer;
 }
 
-void check_struct(){
+void Grbl::check_struct(){
 
   for(int i = 0;i < start_buffer_tail;i++){
     printf("steps %d:from %f %f,move to %f %f\n",i,start_buffer[i].last_target[0],start_buffer[i].last_target[1],
@@ -51,7 +32,7 @@ void check_struct(){
   }
 }
 
-void add_path(){
+void Grbl::add_path(){
 
     float position[2];
     position[0] = start_buffer[0].last_target[0];
@@ -111,7 +92,7 @@ void add_path(){
 #endif
     // planner_recalculate();
 }
-void grbl_init(){
+Grbl::Grbl(){
   settings.arc_tolerance = 50;
   settings.steps_per_mm[0] = 1;
   settings.steps_per_mm[1] = 1;
@@ -133,8 +114,8 @@ void grbl_init(){
         arc_tolerance == the length of the segment
 
 */
-void mc_arc(float *position, float *target, float *offset, float radius, float feed_rate,
-    uint8_t invert_feed_rate, uint8_t axis_0, uint8_t axis_1, uint8_t axis_linear, uint8_t is_clockwise_arc)
+void Grbl::mc_arc(float *position, float *target, float *offset, float radius, float feed_rate,
+    int invert_feed_rate, int axis_0, int axis_1, int axis_linear, int is_clockwise_arc)
 {
   float center_axis0 = position[axis_0] + offset[axis_0];
   float center_axis1 = position[axis_1] + offset[axis_1];
@@ -158,7 +139,7 @@ void mc_arc(float *position, float *target, float *offset, float radius, float f
   // (2x) settings.arc_tolerance. For 99% of users, this is just fine. If a different arc segment fit
   // is desired, i.e. least-squares, midpoint on arc, just change the mm_per_arc_segment calculation.
   // For the intended uses of Grbl, this value shouldn't exceed 2000 for the strictest of cases.
-  uint16_t segments = floor(fabs(0.5*angular_travel*radius)/
+  int segments = floor(fabs(0.5*angular_travel*radius)/
                           sqrt(settings.arc_tolerance*(2*radius - settings.arc_tolerance)) );
   
   if (segments) { 
@@ -203,8 +184,8 @@ void mc_arc(float *position, float *target, float *offset, float radius, float f
     float sin_Ti;
     float cos_Ti;
     float r_axisi;
-    uint16_t i;
-    uint8_t count = 0;
+    int i;
+    int count = 0;
   
     for (i = 1; i<segments; i++) { // Increment (segments-1).
       
@@ -239,7 +220,7 @@ void mc_arc(float *position, float *target, float *offset, float radius, float f
   plan_buffer_line(target, feed_rate, invert_feed_rate,1);
 }
 // Returns the index of the next block in the ring buffer. Also called by stepper segment buffer.
-uint8_t plan_next_block_index(uint8_t block_index) 
+int Grbl::plan_next_block_index(int block_index) 
 {
   block_index++;
   if (block_index == BLOCK_BUFFER_SIZE) { block_index = 0; }
@@ -248,16 +229,16 @@ uint8_t plan_next_block_index(uint8_t block_index)
 
 
 // Returns the index of the previous block in the ring buffer
-uint8_t plan_prev_block_index(uint8_t block_index) 
+int Grbl::plan_prev_block_index(int block_index) 
 {
   if (block_index == 0) { block_index = BLOCK_BUFFER_SIZE; }
   block_index--;
   return(block_index);
 }
 
-void plan_buffer_line(float *target, float feed_rate, uint8_t invert_feed_rate,int circle) {
+void Grbl::plan_buffer_line(float *target, float feed_rate, int invert_feed_rate,int circle) {
   // Prepare and initialize new block
-  plan_block_t *block = &block_buffer[block_buffer_head];
+  PlanBlock *block = &block_buffer[block_buffer_head];
   block->step_event_count = 0;
   block->millimeters = 0;
   block->direction_bits = 0;
@@ -268,7 +249,7 @@ void plan_buffer_line(float *target, float feed_rate, uint8_t invert_feed_rate,i
   // to try to keep these types of things completely separate from the planner for portability.
   int32_t target_steps[N_AXIS];
   float unit_vec[N_AXIS], delta_mm;
-  uint8_t idx;
+  int idx;
 
   for (idx=0; idx<N_AXIS; idx++) {
     // Calculate target position in absolute steps, number of steps for each axis, and determine max step events.
@@ -280,9 +261,6 @@ void plan_buffer_line(float *target, float feed_rate, uint8_t invert_feed_rate,i
     block->step_event_count = max(block->step_event_count, block->steps[idx]);
     delta_mm = (target_steps[idx] - pl.position[idx])/settings.steps_per_mm[idx];
     unit_vec[idx] = delta_mm; // Store unit vector numerator. Denominator computed later.
-        
-    // Set direction bits. Bit enabled always means direction is negative.
-    if (delta_mm < 0 ) { block->direction_bits |= get_direction_pin_mask(idx); }
     
     // Incrementally compute total move distance by Euclidean norm. First add square of each term.
     block->millimeters += delta_mm*delta_mm;
@@ -394,9 +372,9 @@ void plan_buffer_line(float *target, float feed_rate, uint8_t invert_feed_rate,i
   planner_recalculate();
 }
 
-void plan_reset() 
+void Grbl::plan_reset() 
 {
-  memset(&pl, 0, sizeof(planner_t)); // Clear planner struct
+  memset(&pl, 0, sizeof(Planner)); // Clear planner struct
   block_buffer_tail = 0;
   block_buffer_head = 0; // Empty = tail
   next_buffer_head = 1; // plan_next_block_index(block_buffer_head)
@@ -404,10 +382,10 @@ void plan_reset()
   start_buffer_tail = 0;
 }
 
-void planner_recalculate() 
+void Grbl::planner_recalculate() 
 {   
   // Initialize block index to the last block in the planner buffer.
-  uint8_t block_index = plan_prev_block_index(block_buffer_head);
+  int block_index = plan_prev_block_index(block_buffer_head);
         
   // Bail. Can't do anything with one only one plan-able block.
   if (block_index == block_buffer_planned) { return; }
@@ -416,8 +394,8 @@ void planner_recalculate()
   // block in buffer. Cease planning when the last optimal planned or tail pointer is reached.
   // NOTE: Forward pass will later refine and correct the reverse pass to create an optimal plan.
   float entry_speed_sqr;
-  plan_block_t *next;
-  plan_block_t *current = &block_buffer[block_index];
+  PlanBlock *next;
+  PlanBlock *current = &block_buffer[block_index];
 
   // Calculate maximum entry speed for last block in buffer, where the exit speed is always zero.
   current->entry_speed_sqr = min( current->max_entry_speed_sqr, 2*current->acceleration*current->millimeters);

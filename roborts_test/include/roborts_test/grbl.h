@@ -24,23 +24,25 @@
 #define Y_DIRECTION_BIT   6 // MEGA2560 Digital Pin 31
 #define USE_MC_ARC
 
-typedef struct{
+class TempBlock{
+public:
     int step;
     int cross;
     float millimeters;
     float last_target[N_AXIS];
     float forwards[N_AXIS];
-} temp_block_t;
+};
 
 // This struct stores a linear movement of a g-code block motion with its critical "nominal" values
 // are as specified in the source g-code. 
-typedef struct {
+class PlanBlock{
+public:
   // Fields used by the bresenham algorithm for tracing the line
   // NOTE: Used by stepper algorithm to execute the block correctly. Do not alter these values.
-  uint8_t direction_bits;    // The direction bit set for this block (refers to *_DIRECTION_BIT in config.h)
-  uint32_t steps[N_AXIS];    // Step count along each axis
+  int direction_bits;    // The direction bit set for this block (refers to *_DIRECTION_BIT in config.h)
+  int steps[N_AXIS];    // Step count along each axis
   float last_target[N_AXIS];
-  uint32_t step_event_count; // The maximum step axis count and number of steps required to complete this block. 
+  int step_event_count; // The maximum step axis count and number of steps required to complete this block. 
   float forwards[2];
   // Fields used by the motion planner to manage acceleration
   float entry_speed_sqr;         // The current planned entry speed at block junction in (mm/min)^2
@@ -50,11 +52,12 @@ typedef struct {
   float nominal_speed_sqr;       // Axis-limit adjusted nominal speed for this block in (mm/min)^2
   float acceleration;            // Axis-limit adjusted line acceleration in (mm/min^2)
   float millimeters;             // The remaining distance for this block to be executed in (mm)
-  // uint8_t max_override;       // Maximum override value based on axis speed limits
-} plan_block_t;
+  // int max_override;       // Maximum override value based on axis speed limits
+};
 
 
-typedef struct {
+class Setting{
+public:
   // Axis settings
   float steps_per_mm[N_AXIS];
   float max_rate[N_AXIS];
@@ -62,72 +65,89 @@ typedef struct {
   float max_travel[N_AXIS];
 
   // Remaining Grbl settings
-  uint8_t pulse_microseconds;
-  uint8_t step_invert_mask;
-  uint8_t dir_invert_mask;
-  uint8_t stepper_idle_lock_time; // If max value 255, steppers do not disable.
-  uint8_t status_report_mask; // Mask to indicate desired report data.
+  int pulse_microseconds;
+  int step_invert_mask;
+  int dir_invert_mask;
+  int stepper_idle_lock_time; // If max value 255, steppers do not disable.
+  int status_report_mask; // Mask to indicate desired report data.
   float junction_deviation;
   float arc_tolerance;
   
-  uint8_t flags;  // Contains default boolean settings
+  int flags;  // Contains default boolean settings
 
-  uint8_t homing_dir_mask;
+  int homing_dir_mask;
   float homing_feed_rate;
   float homing_seek_rate;
-  uint16_t homing_debounce_delay;
+  int homing_debounce_delay;
   float homing_pulloff;
-} settings_t;
+};
 
-typedef struct {
+class Planner {
+public:
   int32_t position[N_AXIS];          // The planner position of the tool in absolute steps. Kept separate
                                      // from g-code position for movements requiring multiple line motions,
                                      // i.e. arcs, canned cycles, and backlash compensation.
   float previous_unit_vec[N_AXIS];   // Unit vector of previous path line segment
   float previous_nominal_speed_sqr;  // Nominal speed of previous path line segment
-} planner_t;
+};
 
-void planner_recalculate();
-// Initialize and reset the motion plan subsystem
-void plan_reset();
+class Grbl{
+public:
+  PlanBlock block_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
+  int block_buffer_tail;
+  int block_buffer_head;     // Index of the next block to be pushed
+  int next_buffer_head;      // Index of the next buffer head
+  int block_buffer_planned;  // Index of the optimally planned block
+  float now_velocity;
+  Setting settings;
+  TempBlock start_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
+  int start_buffer_tail;
+  Planner pl;
+  Grbl();
 
-// Add a new linear movement to the buffer. target[N_AXIS] is the signed, absolute target position 
-// in millimeters. Feed rate specifies the speed of the motion. If feed rate is inverted, the feed
-// rate is taken to mean "frequency" and would complete the operation in 1/feed_rate minutes.
+  void planner_recalculate();
+  // Initialize and reset the motion plan subsystem
+  void plan_reset();
 
-void plan_buffer_line(float *target, float feed_rate, uint8_t invert_feed_rate,int circle);
+  // Add a new linear movement to the buffer. target[N_AXIS] is the signed, absolute target position 
+  // in millimeters. Feed rate specifies the speed of the motion. If feed rate is inverted, the feed
+  // rate is taken to mean "frequency" and would complete the operation in 1/feed_rate minutes.
 
-// Called when the current block is no longer needed. Discards the block and makes the memory
-// availible for new blocks.
-void plan_discard_current_block();
+  void plan_buffer_line(float *target, float feed_rate, int invert_feed_rate,int circle);
 
-// Gets the current block. Returns NULL if buffer empty
-plan_block_t *plan_get_current_block();
+  // Called when the current block is no longer needed. Discards the block and makes the memory
+  // availible for new blocks.
+  void plan_discard_current_block();
 
-// Called periodically by step segment buffer. Mostly used internally by planner.
-uint8_t plan_next_block_index(uint8_t block_index);
+  // Gets the current block. Returns NULL if buffer empty
+  PlanBlock *plan_get_current_block();
 
-// Called by step segment buffer when computing executing block velocity profile.
-float plan_get_exec_block_exit_speed();
+  // Called periodically by step segment buffer. Mostly used internally by planner.
+  int plan_next_block_index(int block_index);
 
-// Reset the planner position vector (in steps)
-void plan_sync_position();
+  int plan_prev_block_index(int block_index);
 
-// Reinitialize plan with a partially completed block
-void plan_cycle_reinitialize();
+  // Called by step segment buffer when computing executing block velocity profile.
+  float plan_get_exec_block_exit_speed();
 
-// Returns the number of active blocks are in the planner buffer.
-uint8_t plan_get_block_buffer_count();
+  // Reset the planner position vector (in steps)
+  void plan_sync_position();
 
-// Returns the status of the block ring buffer. True, if buffer is full.
-uint8_t plan_check_full_buffer();
+  // Reinitialize plan with a partially completed block
+  void plan_cycle_reinitialize();
 
-void mc_arc(float *position, float *target, float *offset, float radius, float feed_rate,
-    uint8_t invert_feed_rate, uint8_t axis_0, uint8_t axis_1, uint8_t axis_linear, uint8_t is_clockwise_arc);
+  // Returns the number of active blocks are in the planner buffer.
+  int plan_get_block_buffer_count();
 
-void grbl_init();
+  // Returns the status of the block ring buffer. True, if buffer is full.
+  int plan_check_full_buffer();
 
-void add_path();
+  void mc_arc(float *position, float *target, float *offset, float radius, float feed_rate,int invert_feed_rate, int axis_0, int axis_1, int axis_linear, int is_clockwise_arc);
 
-void check_struct();
+  void grbl_init();
+
+  void add_path();
+
+  void check_struct();
+};
 #endif

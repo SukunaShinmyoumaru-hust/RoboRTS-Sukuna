@@ -1,19 +1,6 @@
 #include "look_ahead_planner_server.h"
 #include "grbl.h"
 
-extern plan_block_t block_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
-extern uint8_t block_buffer_tail;
-extern uint8_t block_buffer_head;     // Index of the next block to be pushed
-extern uint8_t next_buffer_head;      // Index of the next buffer head
-extern uint8_t block_buffer_planned;  // Index of the optimally planned block
-extern float now_velocity;
-extern temp_block_t start_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
-extern int start_buffer_tail;
-extern planner_t pl;
-
-typedef std::shared_ptr<roborts_costmap::CostmapInterface> CostmapPtr;
-typedef std::shared_ptr<tf::TransformListener> TfPtr;
-
 
 static bool judgeCross(float x1,float y1,float x2,float y2){
     return (abs(x1 - x2) > 20 && abs(y1 - y2) > 20);
@@ -74,15 +61,15 @@ void LookAheadPlannerServer::calculate_struct(std::vector<geometry_msgs::PoseSta
         future_y = path_[i + 2].pose.position.y * 1000;
 
         if(judgeTurn(last_x,last_y,now_x,now_y,future_x,future_y) || i == size - 2){
-            start_buffer[start_buffer_tail].step = step;
-            start_buffer[start_buffer_tail].millimeters = (abs(cross_x - now_x) < 20 ? abs(cross_y - now_y) : abs(cross_x - now_x));
-            start_buffer[start_buffer_tail].cross = (abs(cross_x - now_x)) < 20 ? 1 : 0;
-            start_buffer[start_buffer_tail].forwards[0] = - (cross_x - now_x);
-            start_buffer[start_buffer_tail].forwards[1] = - (cross_y - now_y);
-            start_buffer[start_buffer_tail].last_target[0] =  cross_x;
-            start_buffer[start_buffer_tail].last_target[1] =  cross_y;
+            grbl.start_buffer[grbl.start_buffer_tail].step = step;
+            grbl.start_buffer[grbl.start_buffer_tail].millimeters = (abs(cross_x - now_x) < 20 ? abs(cross_y - now_y) : abs(cross_x - now_x));
+            grbl.start_buffer[grbl.start_buffer_tail].cross = (abs(cross_x - now_x)) < 20 ? 1 : 0;
+            grbl.start_buffer[grbl.start_buffer_tail].forwards[0] = - (cross_x - now_x);
+            grbl.start_buffer[grbl.start_buffer_tail].forwards[1] = - (cross_y - now_y);
+            grbl.start_buffer[grbl.start_buffer_tail].last_target[0] =  cross_x;
+            grbl.start_buffer[grbl.start_buffer_tail].last_target[1] =  cross_y;
             step = 0;
-            start_buffer_tail++;
+            grbl.start_buffer_tail++;
             cross_x = now_x;
             cross_y = now_y;
         }
@@ -132,19 +119,19 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
     path__.poses = path_;
     path__.header.frame_id = costmap_ptr_->GetGlobalFrameID();
     path_pub_.publish(path__);
-    plan_reset();
+    grbl.plan_reset();
     calculate_struct(path_);
-    add_path();
+    grbl.add_path();
     do_simple_work();
     // check_struct();
     // break;
     
     geometry_msgs::PoseStamped test;
     path_.clear();
-    for(int i = 0;i < block_buffer_head;i++){
+    for(int i = 0;i < grbl.block_buffer_head;i++){
       for(int j = 0;j < 50;j++){
-        test.pose.position.x = (block_buffer[i].last_target[0] + (block_buffer[i].steps[0] * j / 50.0)) / 1000;
-        test.pose.position.y = (block_buffer[i].last_target[1] + (block_buffer[i].steps[1] * j / 50.0)) / 1000;
+        test.pose.position.x = (grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0] * j / 50.0)) / 1000;
+        test.pose.position.y = (grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1] * j / 50.0)) / 1000;
         path_.push_back(test);
       }
     }
@@ -236,14 +223,14 @@ bool LookAheadPlannerServer::judgeAcc(){
           abs(last_acc.accel.angular.z - acc.accel.angular.z) > 0.01);
 }
 void LookAheadPlannerServer::do_simple_work(){
-  for(int i = 0;i < block_buffer_head;i++){
-    if(block_buffer[i].steps[0] != 0){
-      A[i] = ((float)block_buffer[i].steps[1]) / block_buffer[i].steps[0];
-      C[i] = block_buffer[i].last_target[1] - A[i] * block_buffer[i].last_target[0];
+  for(int i = 0;i < grbl.block_buffer_head;i++){
+    if(grbl.block_buffer[i].steps[0] != 0){
+      A[i] = ((float)grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].steps[0];
+      C[i] = grbl.block_buffer[i].last_target[1] - A[i] * grbl.block_buffer[i].last_target[0];
     }
     else{
       A[i] = 114514;;
-      C[i] = block_buffer[i].last_target[0];
+      C[i] = grbl.block_buffer[i].last_target[0];
     }
     // ROS_INFO("A[%d] is %f C[%d] is %f",i,A[i],i,C[i]);
 
@@ -259,7 +246,7 @@ void LookAheadPlannerServer::calculate_v(){
   float xx = path_[a].pose.position.x * 1000;
   float yy = path_[a].pose.position.y * 1000;
   int min_index = 1;
-  for(i = 0;i < block_buffer_head;i++){
+  for(i = 0;i < grbl.block_buffer_head;i++){
     if(A[i] != 114514){
       P = abs(A[i] * xx - yy  + C[i]) / sqrt(A[i] * A[i] + 1);
     }
@@ -274,31 +261,31 @@ void LookAheadPlannerServer::calculate_v(){
   }
   i = min_index;
   
-  //we choose block_buffer[i]
+  //we choose grbl.block_buffer[i]
   float V1,V2,V3,V4;
-  float x1 = block_buffer[i].last_target[0] - x * 1000;
-  float y1 = block_buffer[i].last_target[1] - y * 1000; 
-  float x2 = block_buffer[i].last_target[0] + (block_buffer[i].steps[0])  - x * 1000;
-  float y2 = block_buffer[i].last_target[1] + (block_buffer[i].steps[1])  - y * 1000;
+  float x1 = grbl.block_buffer[i].last_target[0] - x * 1000;
+  float y1 = grbl.block_buffer[i].last_target[1] - y * 1000; 
+  float x2 = grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0])  - x * 1000;
+  float y2 = grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1])  - y * 1000;
   float D1 = sqrt(x1 * x1 + y1 * y1);
   float D2 = sqrt(x2 * x2 + y2 * y2);
   int flag = 0;
   float V;
 
-  V2 = block_buffer[i].nominal_speed_sqr;
-  V1 = block_buffer[i].entry_speed_sqr + 2 * block_buffer[i].acceleration * D1;
+  V2 = grbl.block_buffer[i].nominal_speed_sqr;
+  V1 = grbl.block_buffer[i].entry_speed_sqr + 2 * grbl.block_buffer[i].acceleration * D1;
   if(V1 > V2){
     flag = 1;
   }
   
   if(flag){
-    if(i == block_buffer_head - 1){
+    if(i == grbl.block_buffer_head - 1){
       V4 = 0;
     }
     else{
-      V4 = block_buffer[i+1].entry_speed_sqr;
+      V4 = grbl.block_buffer[i+1].entry_speed_sqr;
     }
-    V3 = V4 + 2 * block_buffer[i].acceleration * D2;
+    V3 = V4 + 2 * grbl.block_buffer[i].acceleration * D2;
     if(V3 > V2){
       V = V2;
       flag = 1;
@@ -319,20 +306,20 @@ void LookAheadPlannerServer::calculate_v(){
 
   // ROS_INFO("calculate that segment is %d D1 is %f D2 is %f flag is %d",i,D1,D2,flag);
 
-  speed.linear.x = ((1.0 * block_buffer[i].steps[0]) / block_buffer[i].millimeters) * V;
-  speed.linear.y = ((1.0 * block_buffer[i].steps[1]) / block_buffer[i].millimeters) * V;
+  speed.linear.x = ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters) * V;
+  speed.linear.y = ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters) * V;
   speed.angular.z = do_pure_pursuit();
   
   acc.accel.linear.x = 0;
   acc.accel.linear.y = 0;
   acc.accel.angular.z = 0;
   if(flag == 0){
-    acc.accel.linear.x = (block_buffer[i].acceleration * ((1.0 * block_buffer[i].steps[0]) / block_buffer[i].millimeters)) / 1000;
-    acc.accel.linear.y = (block_buffer[i].acceleration * ((1.0 * block_buffer[i].steps[1]) / block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.x = (grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.y = (grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
   }
   else if(flag == 2){
-    acc.accel.linear.x = -(block_buffer[i].acceleration * ((1.0 * block_buffer[i].steps[0]) / block_buffer[i].millimeters)) / 1000;
-    acc.accel.linear.y = -(block_buffer[i].acceleration * ((1.0 * block_buffer[i].steps[1]) / block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.x = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.y = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
     // if(((speed.linear.x + acc.accel.linear.x) * speed.linear.x < 0) || ((speed.linear.y + acc.accel.linear.y) * speed.linear.y < 0)){
     //   i++;
     // }
@@ -342,19 +329,19 @@ void LookAheadPlannerServer::calculate_v(){
     acc.accel.linear.x = 0;
   }
   else if(speed.linear.x - last_speed.linear.x > 0){
-    acc.accel.linear.x = (block_buffer[i].acceleration * ((1.0 * block_buffer[i].steps[0]) / block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.x = (grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
   }
   else{
-    acc.accel.linear.x = -(block_buffer[i].acceleration * ((1.0 * block_buffer[i].steps[0]) / block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.x = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
   }
   if(abs(speed.linear.y - last_speed.linear.y) < 0.01){
     acc.accel.linear.y = 0;
   }
   else if(speed.linear.y - last_speed.linear.y > 0){
-    acc.accel.linear.y = (block_buffer[i].acceleration * ((1.0 * block_buffer[i].steps[1]) / block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.y = (grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
   }
   else{
-    acc.accel.linear.y = -(block_buffer[i].acceleration * ((1.0 * block_buffer[i].steps[1]) / block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.y = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
   }
   */
   acc.twist = speed;
@@ -423,8 +410,7 @@ int main(int argc,char** argv){
   ros::NodeHandle n;
 
   LookAheadPlannerServer global_planner_client;
-  
-  grbl_init();
+
   while(ros::ok()){
     // global_planner_client.SendGoal();
     // std::this_thread::sleep_for(std::chrono::milliseconds(5));

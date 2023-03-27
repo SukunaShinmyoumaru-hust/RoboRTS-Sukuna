@@ -93,6 +93,8 @@ private:
     float pure_pursuit_C;
     float L_D;
     float now_velocity;
+
+    Grbl grbl;
 };
 
 #endif
