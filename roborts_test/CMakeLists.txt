@@ -1,9 +1,8 @@
-cmake_minimum_required(VERSION 3.0.2)
 project(roborts_test)
+cmake_minimum_required(VERSION 3.0.2)
 
 set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_module)
-SET(EXECUTABLE_OUTPUT_PATH /home/sukuna/roborts_ws/devel/lib/roborts_test)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
@@ -21,11 +20,10 @@ find_package(catkin REQUIRED COMPONENTS
 include_directories(
   ${catkin_INCLUDE_DIRS}
   ./include/roborts_test
-  ./
 )
 
 add_executable(look_ahead_planner_server
-  a_star_planner/a_star_planner.cpp
+  src/a_star_planner.cpp
   src/look_ahead_planner_server.cpp
   src/grbl.cpp
 )

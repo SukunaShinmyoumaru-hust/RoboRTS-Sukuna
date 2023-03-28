@@ -28,9 +28,6 @@ costmap_ptr_(std::make_shared<roborts_costmap::CostmapInterface>("global_costmap
     now_velocity = 10;
     cmd_vel = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 5);
     cmd_vel_acc = nh_.advertise<roborts_msgs::TwistAccel>("/cmd_vel_acc", 5);
-    // amcl_pose = nh_.subscribe<geometry_msgs::PoseStamped>("amcl_pose", 1000, boost::bind(&LookAheadPlannerServer::get_amcl_pose, this, _1));
-    // move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, boost::bind(&LookAheadPlannerServer::RvizMoveGoalCallBack, this, _1));
-    // amcl_pose = nh_.subscribe<geometry_msgs::PoseStamped>("/amcl_pose", 1000, &LookAheadPlannerServer::get_amcl_pose, this);
     move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, &LookAheadPlannerServer::RvizMoveGoalCallBack, this);
     path_pub_ = nh_.advertise<nav_msgs::Path>("/global_planner_node/pa", 10);
     nh_.getParam("pure_pursuit_c",pure_pursuit_C);
@@ -39,8 +36,6 @@ costmap_ptr_(std::make_shared<roborts_costmap::CostmapInterface>("global_costmap
     nh_.getParam("A",grbl.normal_accelaration);
     nh_.getParam("enable_rotate",enable_rotate);
 }
-
-
 
 void LookAheadPlannerServer::calculate_struct(std::vector<geometry_msgs::PoseStamped> path_){
     int size = path_.size();

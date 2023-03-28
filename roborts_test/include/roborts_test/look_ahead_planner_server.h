@@ -11,7 +11,7 @@
 #include <tf/transform_listener.h>
 #include "actionlib/client/simple_action_client.h"
 #include "nav_msgs/Path.h"
-#include "./a_star_planner/a_star_planner.h"
+#include "a_star_planner.h"
 
 #include "state/error_code.h"
 #include "io/io.h"
@@ -19,12 +19,9 @@
 #include <math.h>
 #include <tf/transform_listener.h>
 #include "costmap/costmap_interface.h"
-
-#include "costmap/costmap_interface.h"
-
 #include "geometry_msgs/Twist.h"
 #include "roborts_msgs/TwistAccel.h"
-#include "./include/roborts_test/grbl.h"
+#include "grbl.h"
 #define USE_NOT_GLOBAL_PLANNER
 
 class LookAheadPlannerServer{
