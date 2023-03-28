@@ -35,6 +35,9 @@ costmap_ptr_(std::make_shared<roborts_costmap::CostmapInterface>("global_costmap
     path_pub_ = nh_.advertise<nav_msgs::Path>("/global_planner_node/pa", 10);
     nh_.getParam("pure_pursuit_c",pure_pursuit_C);
     nh_.getParam("l_d",L_D);
+    nh_.getParam("V",grbl.normal_velocity);
+    nh_.getParam("A",grbl.normal_accelaration);
+    nh_.getParam("enable_rotate",enable_rotate);
 }
 
 
@@ -87,11 +90,18 @@ void LookAheadPlannerServer::get_amcl_pose(const geometry_msgs::PoseStamped::Con
 }
 
 bool LookAheadPlannerServer::check_crash(){
+  costmap_ptr_->GetRobotPose(current_start);
+  x = current_start.pose.position.x;
+  y = current_start.pose.position.y;
+  
+  ROS_INFO("find x&y %f %f",x,y);
+
   int index = find_closest();
   float xx = path_[index].pose.position.x;
   float yy = path_[index].pose.position.y;
   float x1,y1;
   unsigned int goal_x,goal_y;
+  ROS_INFO("the index:%d start judge:%f %f",index,x1,y1);
   for(int i = index + 1;i < path_.size();i++){
     x1 = path_[i].pose.position.x;
     y1 = path_[i].pose.position.y;
@@ -99,11 +109,11 @@ bool LookAheadPlannerServer::check_crash(){
                                           y1,
                                           goal_x,
                                           goal_y);
-
-    if((x1 - xx) * (x1 - xx) + (y1 - yy) * (y1 - yy) > 4){
+    ROS_INFO("Worlds:%f %f Map:%d %d Index:%d",x1,y1,goal_x,goal_y,costmap_ptr_->GetCostMap()->GetCost(goal_x,goal_y));
+    if(sqrt((x1 - xx) * (x1 - xx) + (y1 - yy) * (y1 - yy)) > 4){
       return true;
     }
-    else if(costmap_ptr_->GetCostMap()->GetCost(goal_x,goal_y) > 253){
+    else if(costmap_ptr_->GetCostMap()->GetCost(goal_x,goal_y) >= 253){
       ROS_INFO("at %f %f G!",x1,y1);
       return false;
     }
@@ -112,9 +122,9 @@ bool LookAheadPlannerServer::check_crash(){
 }
 
 void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamped::ConstPtr &goalptr) {
-  #ifdef USE_NOT_GLOBAL_PLANNER
   goal = *goalptr;
   while(judgeFinish() == 0){
+    costmap_ptr_->GetRobotPose(current_start);
     ast.Plan(current_start,*goalptr,path_);
     path__.poses = path_;
     path__.header.frame_id = costmap_ptr_->GetGlobalFrameID();
@@ -123,7 +133,7 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
     calculate_struct(path_);
     grbl.add_path();
     do_simple_work();
-    // check_struct();
+    // grbl.check_struct();
     // break;
     
     geometry_msgs::PoseStamped test;
@@ -154,13 +164,8 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
       std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
     }
-    ROS_INFO("Crash Danger");
-    
+    ROS_INFO("Crash Danger");  
   }
-  #else
-    goal = *goalptr;
-    SendGoal();
-  #endif
   
 }
 /*
@@ -304,8 +309,7 @@ void LookAheadPlannerServer::calculate_v(){
   V = sqrt(V);
   V /= 1000;
 
-  // ROS_INFO("calculate that segment is %d D1 is %f D2 is %f flag is %d",i,D1,D2,flag);
-
+if(enable_rotate){
   speed.linear.x = ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters) * V;
   speed.linear.y = ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters) * V;
   speed.angular.z = do_pure_pursuit();
@@ -324,26 +328,18 @@ void LookAheadPlannerServer::calculate_v(){
     //   i++;
     // }
   }
-  /*
-  if(abs(speed.linear.x - last_speed.linear.x) < 0.01){
-    acc.accel.linear.x = 0;
-  }
-  else if(speed.linear.x - last_speed.linear.x > 0){
-    acc.accel.linear.x = (grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
-  }
-  else{
-    acc.accel.linear.x = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
-  }
-  if(abs(speed.linear.y - last_speed.linear.y) < 0.01){
-    acc.accel.linear.y = 0;
-  }
-  else if(speed.linear.y - last_speed.linear.y > 0){
-    acc.accel.linear.y = (grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
-  }
-  else{
-    acc.accel.linear.y = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
-  }
-  */
+}
+else{
+  int min_index = find_closest();
+  int index = find_point(min_index);
+  double angle;
+  float delta_x = path_[index].pose.position.x - x;
+  float delta_y = path_[index].pose.position.y - y;
+  angle = atan2(delta_y,delta_x);
+  speed.linear.x = cos(angle) * V;
+  speed.linear.y = sin(angle) * V;
+  speed.angular.z = 0;
+}
   acc.twist = speed;
   // acc.accel.angular.z = (speed.angular.z - last_speed.angular.z) * 0.3;
   last_speed = speed;

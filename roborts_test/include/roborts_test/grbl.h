@@ -18,10 +18,6 @@
 #define MINIMUM_JUNCTION_SPEED 0.0
 #define MINIMUM_FEED_RATE 1.0
 #define SOME_LARGE_VALUE 1.0E+38
-#define X_AXIS 0 // Axis indexing value. 
-#define Y_AXIS 1
-#define X_DIRECTION_BIT   7 // MEGA2560 Digital Pin 30
-#define Y_DIRECTION_BIT   6 // MEGA2560 Digital Pin 31
 #define USE_MC_ARC
 
 class TempBlock{
@@ -103,6 +99,8 @@ public:
   TempBlock start_buffer[BLOCK_BUFFER_SIZE];  // A ring buffer for motion instructions
   int start_buffer_tail;
   Planner pl;
+  float normal_velocity;
+  float normal_accelaration;
   Grbl();
 
   void planner_recalculate();

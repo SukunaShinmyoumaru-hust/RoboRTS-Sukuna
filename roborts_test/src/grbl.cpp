@@ -90,7 +90,7 @@ void Grbl::add_path(){
       plan_buffer_line(target,NOMIBAL_FEED,0,0);
     }
 #endif
-    // planner_recalculate();
+    planner_recalculate();
 }
 Grbl::Grbl(){
   settings.arc_tolerance = 50;
@@ -298,9 +298,9 @@ void Grbl::plan_buffer_line(float *target, float feed_rate, int invert_feed_rate
       junction_cos_theta -= pl.previous_unit_vec[idx] * unit_vec[idx];
     }
   }
-  feed_rate = 500;
+  feed_rate = normal_velocity;
 
-  if(circle == 0) block->acceleration = 100;
+  if(circle == 0) block->acceleration = normal_accelaration;
   else block->acceleration = 0;
   
   // TODO: Need to check this method handling zero junction speeds when starting from rest.

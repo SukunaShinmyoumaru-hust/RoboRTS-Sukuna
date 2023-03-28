@@ -95,6 +95,7 @@ private:
     float now_velocity;
 
     Grbl grbl;
+    int enable_rotate;
 };
 
 #endif
