@@ -1,5 +1,11 @@
 # RoboRTS For ROS Noetic
 
+## Run & Compiler Way(Writen by Sukuna)
+
+- If you want to compile please run `catkin_make -DCATKIN_WHITELIST_PACKAGES=""`
+
+- If you want to run please run `roslaunch roborts_bring_up test_plan.launch`(Please run after compiling)
+
 ## 简介
 
 此仓库是在[RoboRTS](https://github.com/RoboMaster/RoboRTS)开源代码的基础上进行修改，以提供ROS Noetic版本对RoboRTS的支持，方便后续在ubuntu20.04系统上进行二次开发。主要针对以下内容进行修改：
@@ -84,22 +90,6 @@
     ~~~shell
     find_package(OpenCV 3 REQUIRED)
     ~~~
-    
- ## 编译运行
- - 编译
-   ~~~shell
-   mkdir -p ~/roborts_ws/src
-   cd ~/roborts_ws/src
-   git clone https://github.com/wzw1105/RoboRTS-Noetic.git --depth=1
-   cd ..
-   catkin_make
-   echo "source ~/roborts_ws/devel/setup.bash" >> ~/.bashrc
-   source ~/.bashrc
-   ~~~
- - 运行
-   ~~~shell
-   roslaunch roborts_bringup roborts_stage.launch
-   ~~~
    
  - 运行结果展示
   <img src="images/rviz.png" style="zoom:100%;display:inline-block;float:middle">
