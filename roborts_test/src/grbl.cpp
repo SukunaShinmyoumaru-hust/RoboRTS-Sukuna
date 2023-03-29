@@ -1,22 +1,58 @@
 #include "grbl.h"
 
-static float min(float a,float b){
-    return a < b ? a : b;
+const float eps = 1e-7;
+const float circle_turn_dis_threshold = 0.1;  //in meters
+const float max_turn_theta = M_PI * 5 / 6;
+const float min_turn_theta = M_PI / 6;
+
+//两个向量（vec1_x, vec1_y）和（vec2_x, vec2_y）的小于180度夹角的绝对值
+float Grbl::get_angle(float vec1_x, float vec1_y, float vec2_x, float vec2_y) {
+    float angle1 = atan2(vec1_y, vec1_x);
+    float angle2 = atan2(vec2_y, vec2_x);
+    float angle = angle2 - angle1;
+    if(angle < - M_PI) angle += 2 * M_PI;
+    if(angle > M_PI) angle -= 2 * M_PI;
+    return angle;
 }
 
-static float max(float a,float b){
-    return a > b ? a : b;
-}
+//传入数据单位为米
+void Grbl::cal_center(float x1, float y1, float x2, float y2, float x3, float y3, float &in_x, float &in_y, float &out_x, float &out_y, float &center_x, float &center_y, float &radius){
+    float x2x1 = x1 - x2, y2y1 = y1 - y2;
+    assert(fabs(x2x1) > eps || fabs(y2y1) > eps);
+    float vec1_length = sqrt(x2x1 * x2x1 + y2y1 * y2y1);
+    x2x1 /= vec1_length, y2y1 /= vec1_length; //将第一个向量归一化
 
-float* calculate_center(float first,float second,float R){
-    float d2 = first * first + second * second;
-    float h2 = R * R - (d2 / 4);
-    float d = sqrt(d2);
-    float h = sqrt(h2);
-    float* answer = (float*) malloc(sizeof(float) * 2);
-    answer[0] = first / 2 - second / d * h;
-    answer[1] = second / 2 + first / d * h; 
-    return answer;
+    float x2x3 = x3 - x2, y2y3 = y3 - y2;
+    assert(fabs(x2x3) > eps || fabs(y2y3) > eps);
+    float vec2_length = sqrt(x2x3 * x2x3 + y2y3 * y2y3);
+    x2x3 /= vec2_length, y2y3 /= vec2_length; //第二个向量归一化
+    
+    float vec_center_x = x2x1 + x2x3, vec_center_y = y2y1 + y2y3;  //求角平分线
+    assert(fabs(vec_center_x) > eps || fabs(vec_center_y) > eps);
+
+    float theta = fabs(get_angle(x2x1, y2y1, x2x3, y2y3)); //求夹角
+    assert(theta > min_turn_theta && theta < max_turn_theta); //角度不能太大
+    radius = circle_turn_dis_threshold * sin(theta / 2) / (1 - sin(theta / 2)); //计算半径
+
+    float turn_center_dis = circle_turn_dis_threshold + radius;
+    float vec_length = sqrt(vec_center_x * vec_center_x + vec_center_y * vec_center_y); //角平分线向量长度
+    center_x = x2 + vec_center_x * turn_center_dis / vec_length; //求圆心
+    center_y = y2 + vec_center_y * turn_center_dis / vec_length;
+
+    float turn_in_dis = (circle_turn_dis_threshold + radius) * cos(theta / 2); //计算拐点到切点的距离
+    if(turn_in_dis < min(vec1_length / 2, vec2_length / 2)) { //切点超过线段一半
+        in_x = x2 + (x2x1 * turn_in_dis), in_y = y2 + (y2y1 * turn_in_dis); //计算入点坐标
+        out_x = x2 + (x2x3 * turn_in_dis), out_y = y2 + (y2y3 * turn_in_dis);
+    }else{
+        turn_in_dis = min(vec1_length / 2, vec2_length / 2); //保证切点不会超过直线段的一半位置
+        turn_center_dis = turn_in_dis / cos(theta / 2);
+        radius = turn_center_dis * sin(theta / 2);
+        center_x = x2 + vec_center_x * turn_center_dis / vec_length; //求圆心
+        center_y = y2 + vec_center_y * turn_center_dis / vec_length;
+        in_x = x2 + (x2x1 * turn_in_dis), in_y = y2 + (y2y1 * turn_in_dis); //计算入点坐标
+        out_x = x2 + (x2x3 * turn_in_dis), out_y = y2 + (y2y3 * turn_in_dis);
+    }
+  printf("Input x1 : %f y1:%f x2:%f y2:%f x3:%f y3:%f\nOutput:In point:%f %f Out point:%f %f radius center: %f %f radius:%f\n",x1,y1,x2,y2,x3,y3,in_x,in_y,out_x,out_y,center_x,center_y,radius);
 }
 
 void Grbl::check_struct(){
@@ -25,78 +61,55 @@ void Grbl::check_struct(){
     printf("steps %d:from %f %f,move to %f %f\n",i,start_buffer[i].last_target[0],start_buffer[i].last_target[1],
     start_buffer[i].last_target[0]+start_buffer[i].forwards[0],start_buffer[i].last_target[1]+start_buffer[i].forwards[1]);
   }
+  /*
   for(int i = 0;i < block_buffer_head;i++){
     printf("steps %d:from %f %f,move to %f %f,entry_velocity is %f,milimeter is %f\n",i,block_buffer[i].last_target[0],block_buffer[i].last_target[1],
     block_buffer[i].last_target[0]+block_buffer[i].steps[0],block_buffer[i].last_target[1]+block_buffer[i].steps[1],
     sqrt(block_buffer[i].entry_speed_sqr),block_buffer[i].millimeters);
   }
+  */
 }
 
 void Grbl::add_path(){
-
-    float position[2];
-    position[0] = start_buffer[0].last_target[0];
-    position[1] = start_buffer[0].last_target[1];
-    pl.position[0] = position[0];
-    pl.position[1] = position[1];
-    float target[2];
-#ifdef USE_MC_ARC
-    target[0] = position[0] + start_buffer[0].forwards[0] * 0.833333;
-    target[1] = position[1] + start_buffer[0].forwards[1] * 0.833333;
-    position[0] = target[0];
-    position[1] = target[1];
-    plan_buffer_line(target,NOMIBAL_FEED,0,0);
+    pl.position[0] = start_buffer[0].last_target[0];
+    pl.position[1] = start_buffer[0].last_target[1];
+    float x1,x2,y1,y2,ans_x,ans_y;
     for(int i = 0;i < start_buffer_tail - 1;i++){
-        // juege the first line cross x or y
-        position[0] = target[0];
-        position[1] = target[1];
-        target[0] = start_buffer[i+1].last_target[0] + start_buffer[i+1].forwards[0] * 0.1666667;
-        target[1] = start_buffer[i+1].last_target[1] + start_buffer[i+1].forwards[1] * 0.1666667;
-        if(abs(start_buffer[i].forwards[0]) > 20){
-            float R = max(start_buffer[i].forwards[0]*0.16666667,start_buffer[i+1].forwards[1]*0.16666667);
-            R /= 2;
-            float* k = calculate_center(start_buffer[i].forwards[0]*0.16666667,start_buffer[i+1].forwards[1]*0.16666667,R);
-            mc_arc(position,target,k,R,NOMIBAL_FEED,5,0,1,0,0);
-            free(k);
-        }
-        else{
-            float R = max(start_buffer[i].forwards[1]*0.16666667,start_buffer[i+1].forwards[0]*0.16666667);
-            R /= 2;
-            float* k = calculate_center(start_buffer[i+1].forwards[0]*0.16666667,start_buffer[i].forwards[1]*0.16666667,R);
-            mc_arc(position,target,k,R,NOMIBAL_FEED,5,0,1,0,0);
-            free(k);
-        }
-        if(i == start_buffer_tail - 2){
-            position[0] = target[0];
-            position[1] = target[1];
-            target[0] = start_buffer[i+1].last_target[0] + start_buffer[i+1].forwards[0];
-            target[1] = start_buffer[i+1].last_target[1] + start_buffer[i+1].forwards[1];
-            plan_buffer_line(target,NOMIBAL_FEED,0,0);
-        }
-        else{
-            position[0] = target[0];
-            position[1] = target[1];
-            target[0] = start_buffer[i+1].last_target[0] + start_buffer[i+1].forwards[0] * 0.833333;
-            target[1] = start_buffer[i+1].last_target[1] + start_buffer[i+1].forwards[1] * 0.833333;
-            plan_buffer_line(target,NOMIBAL_FEED,0,0);
-        }
+      cal_center(start_buffer[i].last_target[0] / 1000,
+                 start_buffer[i].last_target[1] / 1000,
+                 start_buffer[i+1].last_target[0] / 1000,
+                 start_buffer[i+1].last_target[1] / 1000,
+                 (start_buffer[i+1].last_target[0] + start_buffer[i+1].forwards[0]) / 1000,
+                 (start_buffer[i+1].last_target[1] + start_buffer[i+1].forwards[1]) / 1000,
+                 x1,
+                 y1,
+                 x2,
+                 y2,
+                 ans_x,
+                 ans_y,
+                 radius_
+      );
+      end_position_[0] = x1 * 1000;end_position_[1] = y1 * 1000;
+      plan_buffer_line(end_position_,0,0,0);
+      start_position_[0] = x1 * 1000;start_position_[1] = y1 * 1000;
+      end_position_[0] = x2 * 1000;end_position_[1] = y2 * 1000;
+      offset_[0] = (ans_x - x1) * 1000;
+      offset_[1] = (ans_y - y1) * 1000; 
+      if(get_angle(x1 - ans_x, y1 - ans_y, x2 - ans_x, y2 - ans_y) > 0) mc_arc(start_position_,end_position_,offset_,radius_ * 1000,0,0,0,1,0,0);
+      else{
+        mc_arc(start_position_,end_position_,offset_,radius_ * 1000,0,0,0,1,0,1);
+      }
     }
-#else
-    for(int i = 0;i < start_buffer_tail;i++){
-      target[0] = position[0] + start_buffer[i].forwards[0];
-      target[1] = position[1] + start_buffer[i].forwards[1];
-      position[0] = target[0];
-      position[1] = target[1];
-      plan_buffer_line(target,NOMIBAL_FEED,0,0);
-    }
-#endif
+    end_position_[0] = start_buffer[start_buffer_tail - 1].last_target[0] + start_buffer[start_buffer_tail - 1].forwards[0];
+    end_position_[1] = start_buffer[start_buffer_tail - 1].last_target[1] + start_buffer[start_buffer_tail - 1].forwards[1];
+    plan_buffer_line(end_position_,0,0,0);
     planner_recalculate();
 }
 Grbl::Grbl(){
-  settings.arc_tolerance = 50;
+  settings.arc_tolerance = 0.5;
   settings.steps_per_mm[0] = 1;
   settings.steps_per_mm[1] = 1;
-  settings.junction_deviation = 0.02;
+  settings.junction_deviation = 20;
   settings.max_rate[0] = 1000;
   settings.max_rate[1] = 1000;
   settings.acceleration[0] = 60;
@@ -126,57 +139,23 @@ void Grbl::mc_arc(float *position, float *target, float *offset, float radius, f
   
   // CCW angle between position and target from circle center. Only one atan2() trig computation required.
   float angular_travel = atan2(r_axis0*rt_axis1-r_axis1*rt_axis0, r_axis0*rt_axis0+r_axis1*rt_axis1);
-  /*
-  // temporaily useless
+  
   if (is_clockwise_arc) { // Correct atan2 output per direction
     if (angular_travel >= -ARC_ANGULAR_TRAVEL_EPSILON) { angular_travel -= 2*M_PI; }
   } else {
     if (angular_travel <= ARC_ANGULAR_TRAVEL_EPSILON) { angular_travel += 2*M_PI; }
   }
-  */
-  if (angular_travel <= 0.0000001) { angular_travel += 2*M_PI; }
-  // NOTE: Segment end points are on the arc, which can lead to the arc diameter being smaller by up to
-  // (2x) settings.arc_tolerance. For 99% of users, this is just fine. If a different arc segment fit
-  // is desired, i.e. least-squares, midpoint on arc, just change the mm_per_arc_segment calculation.
-  // For the intended uses of Grbl, this value shouldn't exceed 2000 for the strictest of cases.
+  
   int segments = floor(fabs(0.5*angular_travel*radius)/
                           sqrt(settings.arc_tolerance*(2*radius - settings.arc_tolerance)) );
   
   if (segments) { 
-    // Multiply inverse feed_rate to compensate for the fact that this movement is approximated
-    // by a number of discrete segments. The inverse feed_rate should be correct for the sum of 
-    // all segments.
+
     if (invert_feed_rate) { feed_rate *= segments; }
    
     float theta_per_segment = angular_travel/segments;
     float linear_per_segment = (target[axis_linear] - position[axis_linear])/segments;
 
-    /* Vector rotation by transformation matrix: r is the original vector, r_T is the rotated vector,
-       and phi is the angle of rotation. Solution approach by Jens Geisler.
-           r_T = [cos(phi) -sin(phi);
-                  sin(phi)  cos(phi] * r ;
-       
-       For arc generation, the center of the circle is the axis of rotation and the radius vector is 
-       defined from the circle center to the initial position. Each line segment is formed by successive
-       vector rotations. Single precision values can accumulate error greater than tool precision in rare
-       cases. So, exact arc path correction is implemented. This approach avoids the problem of too many very
-       expensive trig operations [sin(),cos(),tan()] which can take 100-200 usec each to compute.
-  
-       Small angle approximation may be used to reduce computation overhead further. A third-order approximation
-       (second order sin() has too much error) holds for most, if not, all CNC applications. Note that this 
-       approximation will begin to accumulate a numerical drift error when theta_per_segment is greater than 
-       ~0.25 rad(14 deg) AND the approximation is successively used without correction several dozen times. This
-       scenario is extremely unlikely, since segment lengths and theta_per_segment are automatically generated
-       and scaled by the arc tolerance setting. Only a very large arc tolerance setting, unrealistic for CNC 
-       applications, would cause this numerical drift error. However, it is best to set N_ARC_CORRECTION from a
-       low of ~4 to a high of ~20 or so to avoid trig operations while keeping arc generation accurate.
-       
-       This approximation also allows mc_arc to immediately insert a line segment into the planner 
-       without the initial overhead of computing cos() or sin(). By the time the arc needs to be applied
-       a correction, the planner should have caught up to the lag caused by the initial mc_arc overhead. 
-       This is important when there are successive arc motions. 
-    */
-    // Computes: cos_T = 1 - theta_per_segment^2/2, sin_T = theta_per_segment - theta_per_segment^3/6) in ~52usec
     float cos_T = 2.0 - theta_per_segment*theta_per_segment;
     float sin_T = theta_per_segment*0.16666667*(cos_T + 4.0);
     cos_T *= 0.5;
@@ -219,6 +198,7 @@ void Grbl::mc_arc(float *position, float *target, float *offset, float radius, f
   // Ensure last segment arrives at target location.
   plan_buffer_line(target, feed_rate, invert_feed_rate,1);
 }
+
 // Returns the index of the next block in the ring buffer. Also called by stepper segment buffer.
 int Grbl::plan_next_block_index(int block_index) 
 {
@@ -300,9 +280,11 @@ void Grbl::plan_buffer_line(float *target, float feed_rate, int invert_feed_rate
   }
   feed_rate = normal_velocity;
 
-  if(circle == 0) block->acceleration = normal_accelaration;
-  else block->acceleration = 0;
-  
+  //do some correction
+  junction_cos_theta = (junction_cos_theta + 1) * 0.8 + junction_cos_theta;
+
+  block->acceleration = normal_accelaration;
+
   // TODO: Need to check this method handling zero junction speeds when starting from rest.
   if (block_buffer_head == block_buffer_tail) {
   
@@ -339,7 +321,7 @@ void Grbl::plan_buffer_line(float *target, float feed_rate, int invert_feed_rate
       //  For a 0 degree acute junction, just set minimum junction speed. 
       block->max_junction_speed_sqr = MINIMUM_JUNCTION_SPEED*MINIMUM_JUNCTION_SPEED;
     } else {
-      junction_cos_theta = max(junction_cos_theta,-0.999999); // Check for numerical round-off to avoid divide by zero.
+      junction_cos_theta = max(junction_cos_theta,-0.999999f); // Check for numerical round-off to avoid divide by zero.
       float sin_theta_d2 = sqrt(0.5*(1.0-junction_cos_theta)); // Trig half angle identity. Always positive.
 
       // TODO: Technically, the acceleration used in calculation needs to be limited by the minimum of the
@@ -348,7 +330,9 @@ void Grbl::plan_buffer_line(float *target, float feed_rate, int invert_feed_rate
                                    (block->acceleration * settings.junction_deviation * sin_theta_d2)/(1.0-sin_theta_d2) );
 
     }
+
   }
+
 
   // Store block nominal speed
   block->nominal_speed_sqr = feed_rate*feed_rate; // (mm/min). Always > 0

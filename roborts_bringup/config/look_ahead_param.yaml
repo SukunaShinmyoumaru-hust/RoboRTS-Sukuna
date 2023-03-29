@@ -3,3 +3,4 @@ l_d : 0.01
 V : 1000
 A : 1000
 enable_rotate: 0
+finish_toleration : 0.09

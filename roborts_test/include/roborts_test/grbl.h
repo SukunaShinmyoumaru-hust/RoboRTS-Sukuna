@@ -8,6 +8,7 @@
 #include <thread>
 #include <cmath>
 #include <cstring>
+#include <assert.h>
 
 #define BLOCK_BUFFER_SIZE 100
 #define NOMIBAL_FEED 50
@@ -19,6 +20,8 @@
 #define MINIMUM_FEED_RATE 1.0
 #define SOME_LARGE_VALUE 1.0E+38
 #define USE_MC_ARC
+#define ARC_ANGULAR_TRAVEL_EPSILON 5e-7
+using namespace std;
 
 class TempBlock{
 public:
@@ -101,6 +104,11 @@ public:
   Planner pl;
   float normal_velocity;
   float normal_accelaration;
+  float start_position_[2];
+  float end_position_[2];
+  float turn_position_[2];
+  float offset_[2];
+  float radius_;
   Grbl();
 
   void planner_recalculate();
@@ -147,5 +155,9 @@ public:
   void add_path();
 
   void check_struct();
+
+  float get_angle(float vec1_x, float vec1_y, float vec2_x, float vec2_y);
+
+  void cal_center(float x1, float y1, float x2, float y2, float x3, float y3, float &in_x, float &in_y, float &out_x, float &out_y, float &center_x, float &center_y, float &radius);
 };
 #endif

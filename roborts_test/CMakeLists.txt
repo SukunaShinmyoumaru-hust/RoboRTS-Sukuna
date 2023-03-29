@@ -6,8 +6,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_module)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
-  pcl_conversions
-  pcl_ros
   nav_msgs
   geometry_msgs
   actionlib
@@ -16,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   interactive_markers
   roborts_costmap
 )
+
+catkin_package()
 
 include_directories(
   ${catkin_INCLUDE_DIRS}

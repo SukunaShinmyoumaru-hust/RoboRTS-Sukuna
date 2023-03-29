@@ -70,11 +70,13 @@ private:
     ros::NodeHandle rviz_nh_;
     ros::Publisher cmd_vel_acc;
     ros::Publisher cmd_vel;
+    ros::Publisher vel_;
     ros::Subscriber amcl_pose;
     double linear_vel;
     float x;
     float y;
     geometry_msgs::Twist speed;
+    geometry_msgs::Twist publish_speed;
     roborts_msgs::TwistAccel acc;
     geometry_msgs::Twist last_speed;
     roborts_msgs::TwistAccel last_acc;
@@ -86,13 +88,12 @@ private:
     
     float A[100];
     float C[100];
-
     float pure_pursuit_C;
     float L_D;
     float now_velocity;
-
     Grbl grbl;
     int enable_rotate;
+    float finish_toleration;
 };
 
 #endif
