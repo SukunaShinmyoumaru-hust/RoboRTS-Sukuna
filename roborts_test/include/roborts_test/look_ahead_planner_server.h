@@ -64,7 +64,7 @@ private:
     std::string map_path;
     nav_msgs::Path path__;
     CostmapPtr costmap_ptr_;
-    roborts_global_planner::AStarPlanner ast;
+    std::shared_ptr<roborts_global_planner::AStarPlanner> ast;
     std::vector<geometry_msgs::PoseStamped> path_;
     ros::NodeHandle nh_;
     ros::NodeHandle rviz_nh_;
@@ -90,10 +90,16 @@ private:
     float C[100];
     float pure_pursuit_C;
     float L_D;
-    float now_velocity;
     Grbl grbl;
     int enable_rotate;
     float finish_toleration;
+    float k_p;
+    float k_d;
+    float k_i;
+    float last_error;
+    float integrated_error;
+    float error;
+    float error_after_pid;
 };
 
 #endif

@@ -94,6 +94,7 @@ CostmapInterface::CostmapInterface(std::string map_name,
     Layer *plugin_obstacle_layer = new ObstacleLayer;
     layered_costmap_->AddPlugin(plugin_obstacle_layer);
     plugin_obstacle_layer->Initialize(layered_costmap_, map_name + "/" + "obstacle_layer", &tf_);
+    ROS_INFO("add obstacle layer.");
   }
   Layer *plugin_inflation_layer = new InflationLayer;
   layered_costmap_->AddPlugin(plugin_inflation_layer);

@@ -1,7 +1,6 @@
 #include "look_ahead_planner_server.h"
 #include "grbl.h"
 
-
 static bool judgeCross(float x1,float y1,float x2,float y2){
     return (abs(x1 - x2) > 20 && abs(y1 - y2) > 20);
 }
@@ -14,10 +13,15 @@ static bool judgenogo(float x1,float y1,float x2,float y2){
     return (abs(x1 - x2) < 20 || abs(y1 - y2) < 20);
 }
 
-LookAheadPlannerServer::LookAheadPlannerServer() : tf_ptr_(std::make_shared<tf::TransformListener>(ros::Duration(10))),
-map_path(ros::package::getPath("roborts_costmap") + "/config/costmap_parameter_config_for_global_plan.prototxt"),
-costmap_ptr_(std::make_shared<roborts_costmap::CostmapInterface>("global_costmap",*tf_ptr_,map_path.c_str())), ast(costmap_ptr_)
+LookAheadPlannerServer::LookAheadPlannerServer()
 {   
+    tf_ptr_ = std::make_shared<tf::TransformListener>(ros::Duration(10));
+    std::string map_path = ros::package::getPath("roborts_costmap") + "/config/costmap_parameter_config_for_global_plan.prototxt";
+    costmap_ptr_ = std::make_shared<roborts_costmap::CostmapInterface>("global_costmap",
+                                                                           *tf_ptr_,
+                                                                           map_path.c_str());
+    ast = std::make_shared<roborts_global_planner::AStarPlanner>(costmap_ptr_);
+    ROS_INFO("create costmap_ptr success");
     last_speed.linear.x = 0;
     last_speed.linear.y = 0;
     last_speed.angular.z = 0;
@@ -25,7 +29,7 @@ costmap_ptr_(std::make_shared<roborts_costmap::CostmapInterface>("global_costmap
     last_acc.accel.linear.y = 0;
     last_acc.accel.angular.z = 0;
     yaw = 0;
-    now_velocity = 10;
+    grbl.now_velocity = 400;
     cmd_vel = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 5);
     cmd_vel_acc = nh_.advertise<roborts_msgs::TwistAccel>("/cmd_vel_acc", 5);
     move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, &LookAheadPlannerServer::RvizMoveGoalCallBack, this);
@@ -37,6 +41,9 @@ costmap_ptr_(std::make_shared<roborts_costmap::CostmapInterface>("global_costmap
     nh_.getParam("A",grbl.normal_accelaration);
     nh_.getParam("enable_rotate",enable_rotate);
     nh_.getParam("finish_toleration",finish_toleration);
+    nh_.getParam("k_p",k_p);
+    nh_.getParam("k_d",k_d);
+    nh_.getParam("k_i",k_i);
 }
 
 void LookAheadPlannerServer::calculate_struct(std::vector<geometry_msgs::PoseStamped> path_){
@@ -111,7 +118,7 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
   goal = *goalptr;
   while(judgeFinish() == 0){
     costmap_ptr_->GetRobotPose(current_start);
-    ast.Plan(current_start,*goalptr,path_);
+    ast -> Plan(current_start,*goalptr,path_);
     path__.poses = path_;
     path__.header.frame_id = costmap_ptr_->GetGlobalFrameID();
     path_pub_.publish(path__);
@@ -120,20 +127,24 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
     grbl.add_path();
     do_simple_work();
     grbl.check_struct();
-    // break;
     
     geometry_msgs::PoseStamped test;
     path_.clear();
     for(int i = 0;i < grbl.block_buffer_head;i++){
-      for(int j = 0;j < 50;j++){
-        test.pose.position.x = (grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0] * j / 50.0)) / 1000;
-        test.pose.position.y = (grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1] * j / 50.0)) / 1000;
+      int k = (grbl.block_buffer[i].millimeters / 50);
+      if(k < 50) k = 50;
+      for(int j = 0;j < k;j++){
+        test.pose.position.x = (grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0] * j / (float)k)) / 1000;
+        test.pose.position.y = (grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1] * j / (float)k)) / 1000;
         path_.push_back(test);
       }
     }
 
     path__.poses = path_;
     path_pub_.publish(path__);
+
+    last_error = 0;
+    integrated_error = 0;
     
     while(check_crash() && judgeFinish() == 0){
       costmap_ptr_->GetRobotPose(current_start);
@@ -147,12 +158,17 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
 
       calculate_v();
 
+      std::this_thread::sleep_for(std::chrono::milliseconds(50));
+
     }
     ROS_INFO("Crash Danger");
   }
   speed.linear.x = 0;
   speed.linear.y = 0;
   speed.angular.z = 0;
+  acc.accel.linear.x = 0;
+  acc.accel.linear.y = 0;
+  acc.accel.angular.z = 0;
   acc.twist = speed;
   last_speed = speed;
   cmd_vel_acc.publish(acc);
@@ -239,6 +255,9 @@ void LookAheadPlannerServer::calculate_v(){
   float unit_vec[2];
   float index = 999999999;
   float P;
+  costmap_ptr_->GetRobotPose(current_start);
+  x = current_start.pose.position.x;
+  y = current_start.pose.position.y;
   int a = find_closest();
   float xx = path_[a].pose.position.x * 1000;
   float yy = path_[a].pose.position.y * 1000;
@@ -260,10 +279,10 @@ void LookAheadPlannerServer::calculate_v(){
   
   //we choose grbl.block_buffer[i]
   float V1,V2,V3,V4;
-  float x1 = grbl.block_buffer[i].last_target[0] - x * 1000;
-  float y1 = grbl.block_buffer[i].last_target[1] - y * 1000; 
-  float x2 = grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0])  - x * 1000;
-  float y2 = grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1])  - y * 1000;
+  float x1 = grbl.block_buffer[i].last_target[0] - xx;
+  float y1 = grbl.block_buffer[i].last_target[1] - yy; 
+  float x2 = grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0])  - xx;
+  float y2 = grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1])  - yy;
   float D1 = sqrt(x1 * x1 + y1 * y1);
   float D2 = sqrt(x2 * x2 + y2 * y2);
   int flag = 0;
@@ -278,11 +297,14 @@ void LookAheadPlannerServer::calculate_v(){
   if(flag){
     if(i == grbl.block_buffer_head - 1){
       V4 = 0;
+      V3 = V4 + 2 * grbl.block_buffer[i].acceleration / 4 * D2;
+      // ROS_INFO("let V4 is 0! %f %f %f %f D2 is %f calculate V3 is %f",grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0]),grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1]),xx,yy,D2,2 * grbl.block_buffer[i].acceleration * D2);
     }
     else{
       V4 = grbl.block_buffer[i+1].entry_speed_sqr;
+      V3 = V4 + 2 * grbl.block_buffer[i].acceleration * D2;
     }
-    V3 = V4 + 2 * grbl.block_buffer[i].acceleration * D2;
+    
     if(V3 > V2){
       V = V2;
       flag = 1;
@@ -296,7 +318,7 @@ void LookAheadPlannerServer::calculate_v(){
     V = V1;
   }
   // ROS_INFO("3");
-  now_velocity = V;
+  grbl.now_velocity = V;
   V = sqrt(V);
   V /= 1000;
   publish_speed.linear.x = V;
@@ -317,28 +339,38 @@ if(enable_rotate){
   else if(flag == 2){
     acc.accel.linear.x = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
     acc.accel.linear.y = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
-    // if(((speed.linear.x + acc.accel.linear.x) * speed.linear.x < 0) || ((speed.linear.y + acc.accel.linear.y) * speed.linear.y < 0)){
-    //   i++;
-    // }
   }
 }
 else{
   int min_index = find_closest();
   int index = find_point(min_index);
-  double angle;
   float delta_x = path_[index].pose.position.x - x;
   float delta_y = path_[index].pose.position.y - y;
-  angle = atan2(delta_y,delta_x);
-  speed.linear.x = cos(angle) * V;
-  speed.linear.y = sin(angle) * V;
+  error = atan2(delta_y,delta_x);
+  error_after_pid = k_p * error + k_d * ((error - last_error) / (0.05)) + k_i * integrated_error;
+  last_error = error;
+  integrated_error += error * (0.05);
+  speed.linear.x = cos(error_after_pid) * V;
+  speed.linear.y = sin(error_after_pid) * V;
   speed.angular.z = 0;
+  acc.accel.linear.x = 0;
+  acc.accel.linear.y = 0;
+  acc.accel.angular.z = 0;
+  if(flag == 0){
+    acc.accel.linear.x = (grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.y = (grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
+  }
+  else if(flag == 2){
+    acc.accel.linear.x = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[0]) / grbl.block_buffer[i].millimeters)) / 1000;
+    acc.accel.linear.y = -(grbl.block_buffer[i].acceleration * ((1.0 * grbl.block_buffer[i].steps[1]) / grbl.block_buffer[i].millimeters)) / 1000;
+  }
 }
   acc.twist = speed;
   // acc.accel.angular.z = (speed.angular.z - last_speed.angular.z) * 0.3;
   last_speed = speed;
   // if(judgeAcc()){
     // ROS_INFO("Publish new acc,%f %f %f",i,speed.linear.x,speed.linear.y,speed.angular.z,V);
-    cmd_vel_acc.publish(acc);
+  cmd_vel_acc.publish(acc);
   //   last_acc = acc;
   // }
 }
@@ -400,11 +432,12 @@ int main(int argc,char** argv){
 
   LookAheadPlannerServer global_planner_client;
 
-  while(ros::ok()){
-    // global_planner_client.SendGoal();
-    // std::this_thread::sleep_for(std::chrono::milliseconds(5));
-    ros::spinOnce();
-    // ros::spin();
-  }
+  // while(ros::ok()){
+  //   // global_planner_client.SendGoal();
+  //   // std::this_thread::sleep_for(std::chrono::milliseconds(5));
+  //   ros::spinOnce();
+  //   // ros::spin();
+  // }
+  ros::spin();
 }
 
