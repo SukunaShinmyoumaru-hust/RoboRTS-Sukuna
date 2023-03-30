@@ -34,13 +34,27 @@ typedef std::shared_ptr<tf::TransformListener> TfPtr;
 /**
  * @brief Global planner alogorithm class for A star under the representation of costmap
  */
-class AStarPlanner {
+
+class GlobalPlannerBase {
+public:
+  typedef std::shared_ptr<roborts_costmap::CostmapInterface> CostmapPtr;
+  GlobalPlannerBase(CostmapPtr costmap_ptr) : costmap_ptr_(costmap_ptr) {};
+  virtual ~GlobalPlannerBase() = default;
+  virtual roborts_common::ErrorInfo Plan(const geometry_msgs::PoseStamped &start,
+                                       const geometry_msgs::PoseStamped &goal,
+                                       std::vector<geometry_msgs::PoseStamped> &path) = 0;
+protected:
+  CostmapPtr costmap_ptr_;
+};
+
+
+class AStarPlanner : public GlobalPlannerBase {
 public:
   /**
    * @brief Constructor of A star planner, set the costmap pointer and relevant costmap size.
    * @param costmap_ptr The shared pointer of costmap interface
    */
-  AStarPlanner(CostmapPtr cost, float heuristic_factor = 1, int inaccessible_cost = 253, float goal_search_tolerance = 0.45);
+  AStarPlanner(CostmapPtr cost);
 
   virtual ~AStarPlanner();
   /**
@@ -112,11 +126,11 @@ public:
   };
 
   //! heuristic_factor_
-  float heuristic_factor_;
+  const float heuristic_factor_ = 1;
   //! inaccessible_cost
-  unsigned int inaccessible_cost_;
+  const unsigned int inaccessible_cost_ = 253;
   //! goal_search_tolerance
-  unsigned int goal_search_tolerance_;
+  const unsigned int goal_search_tolerance_ = 0.45;
   //! gridmap height size
   unsigned int gridmap_height_;
   //! gridmap height width

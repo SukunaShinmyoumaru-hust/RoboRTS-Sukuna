@@ -22,16 +22,17 @@ namespace roborts_global_planner{
     using roborts_common::ErrorInfo;
     std::vector<int> AStarPlanner::f_score_;
 
-    AStarPlanner::AStarPlanner(CostmapPtr cost, float heuristic_factor, int inaccessible_cost, float goal_search_tolerance){
+
+    roborts_common::REGISTER_ALGORITHM(GlobalPlannerBase,
+                                 "a_star_planner",
+                                 AStarPlanner,
+                                 std::shared_ptr<roborts_costmap::CostmapInterface>);
+
+    AStarPlanner::AStarPlanner(CostmapPtr cost) : roborts_global_planner::GlobalPlannerBase(cost){
         costmap_ptr_ = cost;
         gridmap_width_ = costmap_ptr_->GetCostMap()->GetSizeXCell();
         gridmap_height_ = costmap_ptr_->GetCostMap()->GetSizeYCell();
         cost_ = costmap_ptr_->GetCostMap()->GetCharMap();
-
-        //  AStarPlanner param config
-        heuristic_factor_ = heuristic_factor;
-        inaccessible_cost_ = inaccessible_cost;
-        goal_search_tolerance_ = goal_search_tolerance;
     }
 
     AStarPlanner::~AStarPlanner(){

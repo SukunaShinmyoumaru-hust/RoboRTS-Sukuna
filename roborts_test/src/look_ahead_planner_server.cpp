@@ -20,7 +20,12 @@ LookAheadPlannerServer::LookAheadPlannerServer()
     costmap_ptr_ = std::make_shared<roborts_costmap::CostmapInterface>("global_costmap",
                                                                            *tf_ptr_,
                                                                            map_path.c_str());
-    ast = std::make_shared<roborts_global_planner::AStarPlanner>(costmap_ptr_);
+    //ast = std::make_shared<roborts_global_planner::AStarPlanner>(costmap_ptr_);
+    ast = roborts_common::AlgorithmFactory<roborts_global_planner::GlobalPlannerBase, CostmapPtr >::CreateAlgorithm("a_star_planner", costmap_ptr_);
+    if (ast == nullptr) {
+      ROS_ERROR("global planner algorithm instance can't be loaded");
+    }
+
     ROS_INFO("create costmap_ptr success");
     last_speed.linear.x = 0;
     last_speed.linear.y = 0;
@@ -29,7 +34,7 @@ LookAheadPlannerServer::LookAheadPlannerServer()
     last_acc.accel.linear.y = 0;
     last_acc.accel.angular.z = 0;
     yaw = 0;
-    grbl.now_velocity = 400;
+    grbl.now_velocity = 10;
     cmd_vel = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 5);
     cmd_vel_acc = nh_.advertise<roborts_msgs::TwistAccel>("/cmd_vel_acc", 5);
     move_goal_sub_ = nh_.subscribe<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1, &LookAheadPlannerServer::RvizMoveGoalCallBack, this);
@@ -67,7 +72,7 @@ void LookAheadPlannerServer::calculate_struct(std::vector<geometry_msgs::PoseSta
         future_x = path_[i + 2].pose.position.x * 1000;
         future_y = path_[i + 2].pose.position.y * 1000;
 
-        if(judgeTurn(last_x,last_y,now_x,now_y,future_x,future_y) || i == size - 2){
+        if(judgeTurn(last_x,last_y,now_x,now_y,future_x,future_y) || i == size - 3){
             grbl.start_buffer[grbl.start_buffer_tail].step = step;
             grbl.start_buffer[grbl.start_buffer_tail].millimeters = (abs(cross_x - now_x) < 20 ? abs(cross_y - now_y) : abs(cross_x - now_x));
             grbl.start_buffer[grbl.start_buffer_tail].cross = (abs(cross_x - now_x)) < 20 ? 1 : 0;

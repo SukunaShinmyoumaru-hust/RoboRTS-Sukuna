@@ -64,7 +64,7 @@ private:
     std::string map_path;
     nav_msgs::Path path__;
     CostmapPtr costmap_ptr_;
-    std::shared_ptr<roborts_global_planner::AStarPlanner> ast;
+    std::unique_ptr<roborts_global_planner::GlobalPlannerBase> ast;
     std::vector<geometry_msgs::PoseStamped> path_;
     ros::NodeHandle nh_;
     ros::NodeHandle rviz_nh_;
