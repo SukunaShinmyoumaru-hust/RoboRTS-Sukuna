@@ -25,7 +25,7 @@
 #include "costmap/costmap_interface.h"
 
 #define RIGHT 0
-#define WRONG 400
+#define WRONG 0
 #define CROSS 1000
 
 namespace roborts_global_planner{

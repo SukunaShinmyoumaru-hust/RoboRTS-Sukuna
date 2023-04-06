@@ -61,13 +61,13 @@ void Grbl::check_struct(){
     printf("steps %d:from %f %f,move to %f %f\n",i,start_buffer[i].last_target[0],start_buffer[i].last_target[1],
     start_buffer[i].last_target[0]+start_buffer[i].forwards[0],start_buffer[i].last_target[1]+start_buffer[i].forwards[1]);
   }
-  /*
+  
   for(int i = 0;i < block_buffer_head;i++){
     printf("steps %d:from %f %f,move to %f %f,entry_velocity is %f,milimeter is %f\n",i,block_buffer[i].last_target[0],block_buffer[i].last_target[1],
     block_buffer[i].last_target[0]+block_buffer[i].steps[0],block_buffer[i].last_target[1]+block_buffer[i].steps[1],
     sqrt(block_buffer[i].entry_speed_sqr),block_buffer[i].millimeters);
   }
-  */
+  
 }
 
 void Grbl::add_path(){
@@ -95,7 +95,7 @@ void Grbl::add_path(){
       end_position_[0] = x2 * 1000;end_position_[1] = y2 * 1000;
       offset_[0] = (ans_x - x1) * 1000;
       offset_[1] = (ans_y - y1) * 1000; 
-      if(get_angle(x1 - ans_x, y1 - ans_y, x2 - ans_x, y2 - ans_y) > 0) mc_arc(start_position_,end_position_,offset_,radius_ * 1000,0,0,0,1,0,0);
+      if((get_angle(x1 - ans_x, y1 - ans_y, x2 - ans_x, y2 - ans_y) > 0)) mc_arc(start_position_,end_position_,offset_,radius_ * 1000,0,0,0,1,0,0);
       else{
         mc_arc(start_position_,end_position_,offset_,radius_ * 1000,0,0,0,1,0,1);
       }
@@ -237,8 +237,8 @@ void Grbl::plan_buffer_line(float *target, float feed_rate, int invert_feed_rate
     // NOTE: Computes true distance from converted step values.
     block->last_target[idx] = pl.position[idx];
     target_steps[idx] = lround(target[idx]*settings.steps_per_mm[idx]);
-    block->steps[idx] = labs(target_steps[idx]-pl.position[idx]);
-    block->step_event_count = max(block->step_event_count, block->steps[idx]);
+    block->steps[idx] = target_steps[idx]-pl.position[idx];
+    block->step_event_count = max(block->step_event_count, abs(block->steps[idx]));
     delta_mm = (target_steps[idx] - pl.position[idx])/settings.steps_per_mm[idx];
     unit_vec[idx] = delta_mm; // Store unit vector numerator. Denominator computed later.
     
@@ -358,7 +358,9 @@ void Grbl::plan_buffer_line(float *target, float feed_rate, int invert_feed_rate
 
 void Grbl::plan_reset() 
 {
-  memset(&pl, 0, sizeof(Planner)); // Clear planner struct
+  memset(&pl, 0, sizeof(Planner));
+  memset(&block_buffer, 0, sizeof(block_buffer)); 
+  memset(&start_buffer, 0, sizeof(start_buffer));
   block_buffer_tail = 0;
   block_buffer_head = 0; // Empty = tail
   next_buffer_head = 1; // plan_next_block_index(block_buffer_head)

@@ -1,6 +1,7 @@
 #include "look_ahead_planner_server.h"
 #include "grbl.h"
 
+using roborts_common::NodeState;
 static bool judgeCross(float x1,float y1,float x2,float y2){
     return (abs(x1 - x2) > 20 && abs(y1 - y2) > 20);
 }
@@ -11,6 +12,16 @@ static bool judgeTurn(float x1,float y1,float x2,float y2,float x3,float y3){
 }
 static bool judgenogo(float x1,float y1,float x2,float y2){
     return (abs(x1 - x2) < 20 || abs(y1 - y2) < 20);
+}
+
+void LookAheadPlannerServer::SetNodeState(NodeState node_state){
+  std::lock_guard<std::mutex> node_state_lock(node_state_mtx_);
+  node_state_ = node_state;
+}
+
+NodeState LookAheadPlannerServer::GetNodeState(){
+  std::lock_guard<std::mutex> node_state_lock(node_state_mtx_);
+  return node_state_;
 }
 
 LookAheadPlannerServer::LookAheadPlannerServer()
@@ -25,7 +36,7 @@ LookAheadPlannerServer::LookAheadPlannerServer()
     if (ast == nullptr) {
       ROS_ERROR("global planner algorithm instance can't be loaded");
     }
-
+    SetNodeState(NodeState::PAUSE);
     ROS_INFO("create costmap_ptr success");
     last_speed.linear.x = 0;
     last_speed.linear.y = 0;
@@ -49,6 +60,7 @@ LookAheadPlannerServer::LookAheadPlannerServer()
     nh_.getParam("k_p",k_p);
     nh_.getParam("k_d",k_d);
     nh_.getParam("k_i",k_i);
+    SetNodeState(NodeState::IDLE);
 }
 
 void LookAheadPlannerServer::calculate_struct(std::vector<geometry_msgs::PoseStamped> path_){
@@ -120,64 +132,82 @@ bool LookAheadPlannerServer::check_crash(){
 }
 
 void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamped::ConstPtr &goalptr) {
-  goal = *goalptr;
-  while(judgeFinish() == 0){
-    costmap_ptr_->GetRobotPose(current_start);
-    ast -> Plan(current_start,*goalptr,path_);
-    path__.poses = path_;
-    path__.header.frame_id = costmap_ptr_->GetGlobalFrameID();
-    path_pub_.publish(path__);
-    grbl.plan_reset();
-    calculate_struct(path_);
-    grbl.add_path();
-    do_simple_work();
-    grbl.check_struct();
-    
-    geometry_msgs::PoseStamped test;
-    path_.clear();
-    for(int i = 0;i < grbl.block_buffer_head;i++){
-      int k = (grbl.block_buffer[i].millimeters / 50);
-      if(k < 50) k = 50;
-      for(int j = 0;j < k;j++){
-        test.pose.position.x = (grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0] * j / (float)k)) / 1000;
-        test.pose.position.y = (grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1] * j / (float)k)) / 1000;
-        path_.push_back(test);
-      }
-    }
-
-    path__.poses = path_;
-    path_pub_.publish(path__);
-
-    last_error = 0;
-    integrated_error = 0;
-    
-    while(check_crash() && judgeFinish() == 0){
+  ROS_INFO("Into RvizMoveGoalCallBack");
+  if(GetNodeState() == NodeState::IDLE){
+    ROS_INFO("State is IDLE,doing");
+    SetNodeState(NodeState::RUNNING);
+    goal = *goalptr;
+    int starting = 0;
+    while(starting < 5 || judgeFinish() == 0){
+      starting++;
       costmap_ptr_->GetRobotPose(current_start);
-      x = current_start.pose.position.x;
-      y = current_start.pose.position.y;
+      ast -> Plan(current_start,*goalptr,path_);
+      path__.poses = path_;
+      path__.header.frame_id = costmap_ptr_->GetGlobalFrameID();
+      path_pub_.publish(path__);
+      grbl.plan_reset();
+      calculate_struct(path_);
+      grbl.add_path();
+      do_simple_work();
+      grbl.check_struct();
       
-      // yaw = atan2(current_start.pose.orientation.w*current_start.pose.orientation.z+current_start.pose.orientation.x*current_start.pose.orientation.y,
-      //            1-2*(current_start.pose.orientation.y*current_start.pose.orientation.y+current_start.pose.orientation.z*current_start.pose.orientation.z));
+      geometry_msgs::PoseStamped test;
+      path_.clear();
+      for(int i = 0;i < grbl.block_buffer_head;i++){
+        int k = (grbl.block_buffer[i].millimeters / 50);
+        if(k < 50) k = 50;
+        for(int j = 0;j < k;j++){
+          test.pose.position.x = (grbl.block_buffer[i].last_target[0] + (grbl.block_buffer[i].steps[0] * j / (float)k)) / 1000;
+          test.pose.position.y = (grbl.block_buffer[i].last_target[1] + (grbl.block_buffer[i].steps[1] * j / (float)k)) / 1000;
+          path_.push_back(test);
+        }
+      }
 
-      yaw = tf::getYaw(current_start.pose.orientation);
+      path__.poses = path_;
+      path_pub_.publish(path__);
 
-      calculate_v();
+      last_error = 0;
+      integrated_error = 0;
+      
+      while(check_crash() && judgeFinish() == 0){
+        clock_t start, end; 
+        start = clock();
+        
+        costmap_ptr_->GetRobotPose(current_start);
+        x = current_start.pose.position.x;
+        y = current_start.pose.position.y;
+        
+        // yaw = atan2(current_start.pose.orientation.w*current_start.pose.orientation.z+current_start.pose.orientation.x*current_start.pose.orientation.y,
+        //            1-2*(current_start.pose.orientation.y*current_start.pose.orientation.y+current_start.pose.orientation.z*current_start.pose.orientation.z));
 
-      std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        yaw = tf::getYaw(current_start.pose.orientation);
 
+        calculate_v();
+
+        end = clock();
+        printf("time=%f\n", (double)(end - start) / CLOCKS_PER_SEC);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+
+      }
+      ROS_INFO("Crash Danger");
     }
-    ROS_INFO("Crash Danger");
+    speed.linear.x = 0;
+    speed.linear.y = 0;
+    speed.angular.z = 0;
+    acc.accel.linear.x = 0;
+    acc.accel.linear.y = 0;
+    acc.accel.angular.z = 0;
+    acc.twist = speed;
+    last_speed = speed;
+    cmd_vel_acc.publish(acc);
+    vel_.publish(speed);
+    SetNodeState(NodeState::IDLE);
   }
-  speed.linear.x = 0;
-  speed.linear.y = 0;
-  speed.angular.z = 0;
-  acc.accel.linear.x = 0;
-  acc.accel.linear.y = 0;
-  acc.accel.angular.z = 0;
-  acc.twist = speed;
-  last_speed = speed;
-  cmd_vel_acc.publish(acc);
-  vel_.publish(speed);
+  else if(GetNodeState() == NodeState::RUNNING){
+    ROS_INFO("Wait a moment");
+    return;
+  }
 }
 /*
   @param:path_

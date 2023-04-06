@@ -6,6 +6,7 @@
 #include <condition_variable>
 #include <mutex>
 #include <thread>
+#include <time.h>
 
 #include <pcl_ros/point_cloud.h>
 #include <tf/transform_listener.h>
@@ -58,6 +59,10 @@ public:
     void do_simple_work();
 
     bool judgeFinish();
+
+    void SetNodeState(roborts_common::NodeState node_state);
+
+    roborts_common::NodeState GetNodeState();
 private:
     geometry_msgs::PoseStamped goal;
     TfPtr tf_ptr_;
@@ -100,6 +105,8 @@ private:
     float integrated_error;
     float error;
     float error_after_pid;
+    roborts_common::NodeState node_state_;
+    std::mutex node_state_mtx_;
 };
 
 #endif

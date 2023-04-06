@@ -158,6 +158,7 @@ void LocalPlannerNode::Loop() {
   int error_count = 0;
 
   while (GetNodeState() == NodeState::RUNNING) {
+    auto start = std::chrono::high_resolution_clock::now();
     std::unique_lock<std::mutex> plan_lock(plan_mutex_);
     plan_condition_.wait_for(plan_lock, sleep_time);
     auto begin = std::chrono::steady_clock::now();
@@ -189,6 +190,9 @@ void LocalPlannerNode::Loop() {
     }
 
     SetErrorInfo(error_info);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto actual = end - start;
+    ROS_INFO("The time spent:%f",actual);
   }
 
   cmd_vel_.twist.linear.x = 0;
