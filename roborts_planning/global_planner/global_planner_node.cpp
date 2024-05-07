@@ -61,6 +61,7 @@ ErrorInfo GlobalPlannerNode::Init() {
   // ROS path visualize
   ros::NodeHandle viz_nh("~");
   path_pub_ = viz_nh.advertise<nav_msgs::Path>("path", 10);
+  ROS_INFO("path_pub OK");
 
   // Create tf listener
   tf_ptr_ = std::make_shared<tf::TransformListener>(ros::Duration(10));

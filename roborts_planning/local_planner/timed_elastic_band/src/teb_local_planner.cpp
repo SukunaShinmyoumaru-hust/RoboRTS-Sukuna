@@ -211,7 +211,6 @@ roborts_common::ErrorInfo TebLocalPlanner::ComputeVelocityCommands(roborts_msgs:
 
   optimal_->Visualize();
 
-  ROS_INFO("compute velocity succeed");
   return roborts_common::ErrorInfo(roborts_common::ErrorCode::OK);
 }
 
@@ -227,7 +226,6 @@ bool TebLocalPlanner::IsGoalReached () {
 
   if (distance < xy_goal_tolerance_
       && fabs(delta_orient) < yaw_goal_tolerance_) {
-    ROS_INFO("goal reached");
     return true;
   } else {
     return false;
@@ -237,7 +235,6 @@ bool TebLocalPlanner::IsGoalReached () {
 
 bool TebLocalPlanner::SetPlan(const nav_msgs::Path& plan, const geometry_msgs::PoseStamped& goal) {
   if (plan_mutex_.try_lock()) {
-    ROS_INFO("set plan");
     if (plan.poses.empty()) {
       temp_plan_.poses.push_back(goal);
     } else {
@@ -391,7 +388,7 @@ bool TebLocalPlanner::TransformGlobalPlan(int *current_goal_idx) {
   catch(tf::ExtrapolationException& ex) {
     ROS_ERROR("Extrapolation Error: %s", ex.what());
     if (global_plan_.poses.size() > 0) {
-      ROS_INFO("Global Frame: %s Plan Frame size %d : %s", global_frame_.c_str(),\
+      // ROS_INFO("Global Frame: %s Plan Frame size %d : %s", global_frame_.c_str(),\
                (unsigned int)global_plan_.poses.size(),\
                global_plan_.poses[0].header.frame_id.c_str());
     }

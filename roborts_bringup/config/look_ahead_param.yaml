@@ -1,9 +1,10 @@
 pure_pursuit_c : 0.5
-l_d : 0.01
-V : 1000
-A : 1000
+l_d : 0.16
+V : 2121
+A : 3600
 enable_rotate: 0
-finish_toleration : 0.01
+finish_toleration : 0.09
 k_p : 1
 k_d : 0
 k_i : 0
+C : 1

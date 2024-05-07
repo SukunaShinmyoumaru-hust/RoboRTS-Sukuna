@@ -109,6 +109,7 @@ public:
   float turn_position_[2];
   float offset_[2];
   float radius_;
+  int C;
   Grbl();
 
   void planner_recalculate();

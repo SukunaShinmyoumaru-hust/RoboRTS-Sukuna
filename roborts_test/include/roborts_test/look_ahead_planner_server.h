@@ -46,7 +46,7 @@ public:
 
     double do_pure_pursuit();
 
-    void calculate_v();
+    double calculate_v();
 
     bool judgeAcc();
 
@@ -86,6 +86,7 @@ private:
     geometry_msgs::Twist last_speed;
     roborts_msgs::TwistAccel last_acc;
     float yaw;
+    int C1;
 
     geometry_msgs::PoseStamped current_start;
     ros::Subscriber move_goal_sub_;

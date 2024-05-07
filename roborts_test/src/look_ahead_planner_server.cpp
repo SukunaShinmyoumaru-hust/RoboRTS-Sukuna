@@ -60,6 +60,7 @@ LookAheadPlannerServer::LookAheadPlannerServer()
     nh_.getParam("k_p",k_p);
     nh_.getParam("k_d",k_d);
     nh_.getParam("k_i",k_i);
+    nh_.getParam("C",grbl.C);
     SetNodeState(NodeState::IDLE);
 }
 
@@ -149,7 +150,10 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
       calculate_struct(path_);
       grbl.add_path();
       do_simple_work();
-      grbl.check_struct();
+      // grbl.check_struct();
+      
+      path__.poses = path_;
+      path_pub_.publish(path__);
       
       geometry_msgs::PoseStamped test;
       path_.clear();
@@ -163,12 +167,15 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
         }
       }
 
-      path__.poses = path_;
-      path_pub_.publish(path__);
-
       last_error = 0;
       integrated_error = 0;
-      
+      double all = 0;
+      double x = 0;
+      double last_v = 0;
+      double all_v = 0;
+      int cishu = 0;
+      clock_t a2,a1;
+      a1 = clock();
       while(check_crash() && judgeFinish() == 0){
         clock_t start, end; 
         start = clock();
@@ -182,16 +189,23 @@ void LookAheadPlannerServer::RvizMoveGoalCallBack(const geometry_msgs::PoseStamp
 
         yaw = tf::getYaw(current_start.pose.orientation);
 
-        calculate_v();
+        x = calculate_v();
+        
 
         end = clock();
-        printf("time=%f\n", (double)(end - start) / CLOCKS_PER_SEC);
-
+        all += (double)(end - start) / CLOCKS_PER_SEC;
+        if((sqrt(x) - sqrt(last_v)) > (grbl.normal_accelaration * (double)(end - start) / CLOCKS_PER_SEC)) all_v++;
+        last_v = x;
+        cishu++;
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
       }
-      ROS_INFO("Crash Danger");
+      a2 = clock();
+      printf("total time=%f\n", (double)(a2 - a1) / CLOCKS_PER_SEC);
+      printf("time=%f\n", all / cishu);
+      printf("avg=%f\n", all_v / cishu);
     }
+       
     speed.linear.x = 0;
     speed.linear.y = 0;
     speed.angular.z = 0;
@@ -285,7 +299,7 @@ void LookAheadPlannerServer::do_simple_work(){
     }
   }
 }
-void LookAheadPlannerServer::calculate_v(){
+double LookAheadPlannerServer::calculate_v(){
   int i;
   float unit_vec[2];
   float index = 999999999;
@@ -387,6 +401,7 @@ else{
   integrated_error += error * (0.05);
   speed.linear.x = cos(error_after_pid) * V;
   speed.linear.y = sin(error_after_pid) * V;
+
   speed.angular.z = 0;
   acc.accel.linear.x = 0;
   acc.accel.linear.y = 0;
@@ -408,6 +423,7 @@ else{
   cmd_vel_acc.publish(acc);
   //   last_acc = acc;
   // }
+  return grbl.now_velocity;
 }
 /*
 // abandoned

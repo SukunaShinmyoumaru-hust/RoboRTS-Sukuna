@@ -30,8 +30,14 @@ class VelConverter {
     cmd_vel_.linear.x = 0;
     cmd_vel_.linear.y = 0;
     cmd_vel_.angular.z = 0;
+    
+    a1 = clock();
+
+    fp = fopen("/home/sukuna/roborts_ws/result/result","a+");
+    if(fp == NULL) printf("empty pointer\n");
 
     cmd_pub_ = cmd_handle_.advertise<geometry_msgs::Twist>("/cmd_vel", 5);
+    cmd_pub_2 = cmd_handle_.advertise<geometry_msgs::Twist>("/cmd_vel1", 5);
     cmd_sub_ = cmd_handle_.subscribe<roborts_msgs::TwistAccel>("/cmd_vel_acc", 100, boost::bind(&VelConverter::VelCallback, this, _1));
   }
   void VelCallback(const roborts_msgs::TwistAccel::ConstPtr& msg);
@@ -40,11 +46,15 @@ class VelConverter {
  private:
   roborts_msgs::TwistAccel cmd_vel_acc_;
   geometry_msgs::Twist cmd_vel_;
+  geometry_msgs::Twist cmd_vel_2;
+  FILE* fp;
 
   bool new_cmd_acc_, begin_;
+  clock_t a2,a1;
 
   ros::NodeHandle cmd_handle_;
   ros::Publisher cmd_pub_;
+  ros::Publisher cmd_pub_2;
   ros::Subscriber cmd_sub_;
   std::chrono::high_resolution_clock::time_point time_begin_;
 
@@ -82,7 +92,12 @@ void VelConverter::UpdateVel() {
   cmd_vel_.angular.z = cmd_vel_.angular.z + actual_time * cmd_vel_acc_.accel.angular.z;
 
   cmd_pub_.publish(cmd_vel_);
+  cmd_vel_2.linear.x = sqrt(cmd_vel_.linear.x * cmd_vel_.linear.x + cmd_vel_.linear.y * cmd_vel_.linear.y);
+  cmd_pub_2.publish(cmd_vel_2);
 
+  a2 = clock();
+
+  fprintf(fp,"%f %f\n",(double)(a2 - a1) / CLOCKS_PER_SEC,cmd_vel_2.linear.x);
 }
 
 int main(int argc, char **argv)

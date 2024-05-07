@@ -52,7 +52,7 @@ void Grbl::cal_center(float x1, float y1, float x2, float y2, float x3, float y3
         in_x = x2 + (x2x1 * turn_in_dis), in_y = y2 + (y2y1 * turn_in_dis); //计算入点坐标
         out_x = x2 + (x2x3 * turn_in_dis), out_y = y2 + (y2y3 * turn_in_dis);
     }
-  printf("Input x1 : %f y1:%f x2:%f y2:%f x3:%f y3:%f\nOutput:In point:%f %f Out point:%f %f radius center: %f %f radius:%f\n",x1,y1,x2,y2,x3,y3,in_x,in_y,out_x,out_y,center_x,center_y,radius);
+  // printf("Input x1 : %f y1:%f x2:%f y2:%f x3:%f y3:%f\nOutput:In point:%f %f Out point:%f %f radius center: %f %f radius:%f\n",x1,y1,x2,y2,x3,y3,in_x,in_y,out_x,out_y,center_x,center_y,radius);
 }
 
 void Grbl::check_struct(){
@@ -75,6 +75,7 @@ void Grbl::add_path(){
     pl.position[1] = start_buffer[0].last_target[1];
     float x1,x2,y1,y2,ans_x,ans_y;
     for(int i = 0;i < start_buffer_tail - 1;i++){
+      if(C){
       cal_center(start_buffer[i].last_target[0] / 1000,
                  start_buffer[i].last_target[1] / 1000,
                  start_buffer[i+1].last_target[0] / 1000,
@@ -98,6 +99,12 @@ void Grbl::add_path(){
       if((get_angle(x1 - ans_x, y1 - ans_y, x2 - ans_x, y2 - ans_y) > 0)) mc_arc(start_position_,end_position_,offset_,radius_ * 1000,0,0,0,1,0,0);
       else{
         mc_arc(start_position_,end_position_,offset_,radius_ * 1000,0,0,0,1,0,1);
+      }
+      }
+      else{
+        end_position_[0] = start_buffer[i+1].last_target[0]; end_position_[1] = start_buffer[i+1].last_target[1];
+        printf("move to %f %f\n",end_position_[0],end_position_[1]);
+        plan_buffer_line(end_position_,0,0,0);
       }
     }
     end_position_[0] = start_buffer[start_buffer_tail - 1].last_target[0] + start_buffer[start_buffer_tail - 1].forwards[0];
@@ -327,7 +334,7 @@ void Grbl::plan_buffer_line(float *target, float feed_rate, int invert_feed_rate
       // TODO: Technically, the acceleration used in calculation needs to be limited by the minimum of the
       // two junctions. However, this shouldn't be a significant problem except in extreme circumstances.
       block->max_junction_speed_sqr = max( MINIMUM_JUNCTION_SPEED*MINIMUM_JUNCTION_SPEED,
-                                   (block->acceleration * settings.junction_deviation * sin_theta_d2)/(1.0-sin_theta_d2) );
+                                   (block->acceleration * settings.junction_deviation * sin_theta_d2)/(1.0-sin_theta_d2) * 1.5);
 
     }
 

@@ -27,7 +27,7 @@
   <!-- Run the velocity converter node -->
   <node pkg="roborts_planning" type="vel_converter" name="vel_converter_node" respawn="false" />
 
-  <!-- Run the global planner client -->
+  <!-- Run the local planner client -->
   <node pkg="roborts_test" type="look_ahead_planner_server" name="look_ahead_planner_server" respawn="false" output="screen"/>
 
   <!-- Run the rviz -->

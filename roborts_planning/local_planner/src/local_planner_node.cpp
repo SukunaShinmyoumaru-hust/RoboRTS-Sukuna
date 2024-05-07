@@ -94,8 +94,6 @@ void LocalPlannerNode::ExcuteCB(const roborts_msgs::LocalPlannerGoal::ConstPtr &
     plan_mtx_.unlock();
     plan_condition_.notify_one();
   }
-
-  ROS_INFO("Send Plan!");
   if (node_state == NodeState::IDLE) {
     StartPlanning();
   }
@@ -156,13 +154,24 @@ void LocalPlannerNode::Loop() {
   }
   std::chrono::microseconds sleep_time = std::chrono::microseconds(0);
   int error_count = 0;
-
+  double all = 0;
+  int cishu = 0;
+  double all_v = 0;
+  double last_v = 0;
+  double x = 0;
+  clock_t a1,a2;
+  a1 = clock();
   while (GetNodeState() == NodeState::RUNNING) {
-    auto start = std::chrono::high_resolution_clock::now();
+    
     std::unique_lock<std::mutex> plan_lock(plan_mutex_);
     plan_condition_.wait_for(plan_lock, sleep_time);
     auto begin = std::chrono::steady_clock::now();
+    clock_t start, end; 
+    start = clock();
     roborts_common::ErrorInfo error_info = local_planner_->ComputeVelocityCommands(cmd_vel_);
+
+    x = cmd_vel_.twist.linear.x * cmd_vel_.twist.linear.x + cmd_vel_.twist.linear.y * cmd_vel_.twist.linear.y;
+    
     auto cost_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - begin);
     int need_time = 1000 /frequency_;
     sleep_time = std::chrono::milliseconds(need_time) - cost_time;
@@ -190,11 +199,17 @@ void LocalPlannerNode::Loop() {
     }
 
     SetErrorInfo(error_info);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto actual = end - start;
-    ROS_INFO("The time spent:%f",actual);
+    end = clock();
+    all += (double)(end - start) / CLOCKS_PER_SEC;
+    if((sqrt(x) - sqrt(last_v)) > (3.6 * (double)(end - start) / CLOCKS_PER_SEC)) all_v++;
+    last_v = x;
+    cishu++;
+    
   }
-
+  a2 = clock();
+  printf("time=%f\n", (double)(a2 - a1) / CLOCKS_PER_SEC);
+  printf("time=%f\n", all / cishu);
+  printf("avg=%f\n", all_v / cishu);
   cmd_vel_.twist.linear.x = 0;
   cmd_vel_.twist.linear.y = 0;
   cmd_vel_.twist.angular.z = 0;

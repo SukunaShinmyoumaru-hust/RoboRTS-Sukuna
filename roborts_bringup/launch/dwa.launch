@@ -1,0 +1,79 @@
+<launch>
+  <arg name="map" value="icra2022"/>
+  <master auto="start"/>
+  <param name="/use_sim_time" value="true"/>
+
+  <!--Load parameters for localization node  -->
+  <rosparam command="load" file="$(find roborts_localization)/config/localization.yaml" />
+  <rosparam command="load" file="$(find roborts_localization)/amcl/config/amcl.yaml" />
+
+  <rosparam command="load" file="$(find roborts_bringup)/config/look_ahead_param.yaml" />
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find roborts_bringup)/maps/$(arg map).yaml" respawn="false" />
+
+  <!-- Run the stage simulator -->
+  <node pkg="stage_ros" type="stageros" name="stageros" args="$(find roborts_bringup)/worlds/$(arg map).world" respawn="false" >
+    <remap from="base_scan" to="scan" />
+    <param name="base_watchdog_timeout" value="0.01" />
+  </node>
+
+  <!-- Run the localization node -->
+  <node pkg="roborts_localization" type="localization_node" name="localization_node" respawn="false" output="screen"/>
+
+  <!-- Run the global planner Node -->
+  <node pkg="roborts_planning" type="global_planner_node" name="global_planner_node" respawn="false" />
+
+  <!-- Run the velocity converter node -->
+  <node pkg="roborts_planning" type="vel_converter" name="vel_converter_node" respawn="false" />
+
+<arg name="ns" default="local_planner"/>
+
+    <!-- param -->
+    <arg name="hz" default="20"/>
+    <arg name="subscribe_count_th" default="3"/>
+    <arg name="sleep_time_after_finish" default="0.5"/>
+    <arg name="use_scan_as_input" default="false"/>
+    <arg name="use_footprint" default="false"/>
+    <arg name="use_path_cost" default="false"/>
+    <arg name="robot_param" default="$(find roborts_dwa)/config/robot_param.yaml"/>
+    <arg name="dwa_param" default="$(find roborts_dwa)/config/dwa_param.yaml"/>
+    <!-- topic name -->
+    <arg name="cmd_vel" default="/local_path/cmd_vel"/>
+    <arg name="dist_to_goal_th" default="/dist_to_goal_th"/>
+    <arg name="path" default="/path"/>
+    <arg name="footprint" default="/footprint"/>
+    <arg name="local_goal" default="/local_goal"/>
+    <arg name="local_map" default="/local_map"/>
+    <arg name="odom" default="/odom"/>
+    <arg name="scan" default="/scan"/>
+    <arg name="target_velocity" default="/target_velocity"/>
+
+    <!-- run dwa_planner node -->
+    <node pkg="roborts_dwa" type="roborts_dwa" name="roborts_dwa" ns="$(arg ns)">
+        <!-- param -->
+        <rosparam command="load" file="$(arg robot_param)"/>
+        <rosparam command="load" file="$(arg dwa_param)"/>
+        <param name="HZ" value="$(arg hz)"/>
+        <param name="USE_SCAN_AS_INPUT" value="$(arg use_scan_as_input)"/>
+        <param name="USE_FOOTPRINT" value="$(arg use_footprint)"/>
+        <param name="USE_PATH_COST" value="$(arg use_path_cost)"/>
+        <param name="SUBSCRIBE_COUNT_TH" value="$(arg subscribe_count_th)"/>
+        <param name="SLEEP_TIME_AFTER_FINISH" value="$(arg sleep_time_after_finish)"/>
+        <!-- topic name -->
+        <remap from="/cmd_vel" to="$(arg cmd_vel)"/>
+        <remap from="/dist_to_goal_th" to="$(arg dist_to_goal_th)"/>
+        <remap from="/path" to="$(arg path)"/>
+        <remap from="/footprint" to="$(arg footprint)"/>
+        <remap from="/local_goal" to="$(arg local_goal)"/>
+        <remap from="/local_map" to="$(arg local_map)"/>
+        <remap from="/odom" to="$(arg odom)"/>
+        <remap from="/scan" to="$(arg scan)"/>
+        <remap from="/target_velocity" to="$(arg target_velocity)"/>
+    </node>
+
+  <!-- Run the rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find roborts_bringup)/rviz/roborts.rviz" />
+
+
+</launch>
